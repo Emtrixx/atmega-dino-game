@@ -10,7 +10,7 @@
 
 //const uint8_t TFT_MAX_X = 131;
 //const uint8_t TFT_MAX_Y = 175;
-static obstacle obstacleList[] = [];
+node obstacle;	
 
 
 void InitGame(){
@@ -28,6 +28,7 @@ void InitGame(){
 	for(int i = 0; i < 23232; i++) {
 		SPISend8Bit(0x00);
 	};
+	spawnObstacle();
 }
 
 /*

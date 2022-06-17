@@ -4,6 +4,8 @@
 
 game_controller.c
 
+linked_list.c
+
 tft_display.c
 
 main.c
