@@ -9,7 +9,7 @@
 #ifndef LINKED_LIST_H_
 #define LINKED_LIST_H_
 
-typedef node {
+typedef struct node {
 	void * data;
 	struct node * next;
 } node;

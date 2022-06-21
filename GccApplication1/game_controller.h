@@ -9,14 +9,21 @@
 #ifndef GAME_CONTROLLER_H_
 #define GAME_CONTROLLER_H_
 
+#define BUZZER_ON		PORTC |= 1<<PORTC1
+#define BUZZER_OFF	PORTC &= ~(1<<PORTC1)
+
 typedef struct {
 	int x;
 	int y;
-}obstacle;
+} entity;
+
+int gameOver;
+int jumping;
 
 void InitGame();
 
-void spawnObstacle();
+void moveObstacles();
 
+void jump(int counter);
 
 #endif /* GAME_CONTROLLER_H_ */

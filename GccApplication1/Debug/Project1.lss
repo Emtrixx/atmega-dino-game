@@ -3,60 +3,62 @@ Project1.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000118  2**0
+  0 .data         00000052  00800100  0000084e  000008e2  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000c4  00000000  00000000  00000054  2**1
+  1 .text         0000084e  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000118  2**0
+  2 .bss          00000019  00800152  00800152  00000934  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000934  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000148  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000964  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000040  00000000  00000000  00000188  2**0
+  5 .debug_aranges 00000108  00000000  00000000  000009a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000700  00000000  00000000  000001c8  2**0
+  6 .debug_info   000012c8  00000000  00000000  00000aac  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000673  00000000  00000000  000008c8  2**0
+  7 .debug_abbrev 00000a3e  00000000  00000000  00001d74  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000269  00000000  00000000  00000f3b  2**0
+  8 .debug_line   00000ab2  00000000  00000000  000027b2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  0000007c  00000000  00000000  000011a4  2**2
+  9 .debug_frame  00000304  00000000  00000000  00003264  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000039f  00000000  00000000  00001220  2**0
+ 10 .debug_str    000005e9  00000000  00000000  00003568  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000005e  00000000  00000000  000015bf  2**0
+ 11 .debug_loc    00000a75  00000000  00000000  00003b51  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000030  00000000  00000000  0000161d  2**0
+ 12 .debug_ranges 000000f0  00000000  00000000  000045c6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
-   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-   c:	0c 94 4c 00 	jmp	0x98	; 0x98 <__vector_3>
-  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  38:	0c 94 56 00 	jmp	0xac	; 0xac <__vector_14>
-  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
-  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 76 03 	jmp	0x6ec	; 0x6ec <__vector_4>
+  14:	0c 94 5f 03 	jmp	0x6be	; 0x6be <__vector_5>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 bc 03 	jmp	0x778	; 0x778 <__vector_14>
+  3c:	0c 94 a5 03 	jmp	0x74a	; 0x74a <__vector_15>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
 
 00000068 <__ctors_end>:
   68:	11 24       	eor	r1, r1
@@ -70,68 +72,1434 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e4 ec       	ldi	r30, 0xC4	; 196
-  7c:	f0 e0       	ldi	r31, 0x00	; 0
+  7a:	ee e4       	ldi	r30, 0x4E	; 78
+  7c:	f8 e0       	ldi	r31, 0x08	; 8
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a0 30       	cpi	r26, 0x00	; 0
+  84:	a2 35       	cpi	r26, 0x52	; 82
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
-  8a:	0e 94 4b 00 	call	0x96	; 0x96 <main>
-  8e:	0c 94 60 00 	jmp	0xc0	; 0xc0 <_exit>
 
-00000092 <__bad_interrupt>:
-  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a2 e5       	ldi	r26, 0x52	; 82
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
-00000096 <main>:
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ab 36       	cpi	r26, 0x6B	; 107
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 5c 03 	call	0x6b8	; 0x6b8 <main>
+  9e:	0c 94 25 04 	jmp	0x84a	; 0x84a <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <loadWorld>:
+}
+
+/*
+ *	Loads the world 
+ */
+void loadWorld() {
+  a6:	0f 93       	push	r16
+  a8:	cf 93       	push	r28
+  aa:	df 93       	push	r29
+	// Background
+	TFT_Window(0, 0, 175, 131, TFT_Landscape);
+  ac:	02 e0       	ldi	r16, 0x02	; 2
+  ae:	23 e8       	ldi	r18, 0x83	; 131
+  b0:	4f ea       	ldi	r20, 0xAF	; 175
+  b2:	60 e0       	ldi	r22, 0x00	; 0
+  b4:	80 e0       	ldi	r24, 0x00	; 0
+  b6:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+	for(int i = 0; i < 23232; i++) {
+  ba:	c0 e0       	ldi	r28, 0x00	; 0
+  bc:	d0 e0       	ldi	r29, 0x00	; 0
+  be:	04 c0       	rjmp	.+8      	; 0xc8 <loadWorld+0x22>
+		SPISend8Bit(0xFF);
+  c0:	8f ef       	ldi	r24, 0xFF	; 255
+  c2:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+ *	Loads the world 
+ */
+void loadWorld() {
+	// Background
+	TFT_Window(0, 0, 175, 131, TFT_Landscape);
+	for(int i = 0; i < 23232; i++) {
+  c6:	21 96       	adiw	r28, 0x01	; 1
+  c8:	c0 3c       	cpi	r28, 0xC0	; 192
+  ca:	8a e5       	ldi	r24, 0x5A	; 90
+  cc:	d8 07       	cpc	r29, r24
+  ce:	c4 f3       	brlt	.-16     	; 0xc0 <loadWorld+0x1a>
+		SPISend8Bit(0xFF);
+	};
+	// Floor
+	TFT_Window(0, 100, 175, 109, TFT_Landscape);
+  d0:	02 e0       	ldi	r16, 0x02	; 2
+  d2:	2d e6       	ldi	r18, 0x6D	; 109
+  d4:	4f ea       	ldi	r20, 0xAF	; 175
+  d6:	64 e6       	ldi	r22, 0x64	; 100
+  d8:	80 e0       	ldi	r24, 0x00	; 0
+  da:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+	for(int i = 0; i < 1760; i++) {
+  de:	c0 e0       	ldi	r28, 0x00	; 0
+  e0:	d0 e0       	ldi	r29, 0x00	; 0
+  e2:	04 c0       	rjmp	.+8      	; 0xec <loadWorld+0x46>
+		SPISend8Bit(0x00);
+  e4:	80 e0       	ldi	r24, 0x00	; 0
+  e6:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+	for(int i = 0; i < 23232; i++) {
+		SPISend8Bit(0xFF);
+	};
+	// Floor
+	TFT_Window(0, 100, 175, 109, TFT_Landscape);
+	for(int i = 0; i < 1760; i++) {
+  ea:	21 96       	adiw	r28, 0x01	; 1
+  ec:	c0 3e       	cpi	r28, 0xE0	; 224
+  ee:	86 e0       	ldi	r24, 0x06	; 6
+  f0:	d8 07       	cpc	r29, r24
+  f2:	c4 f3       	brlt	.-16     	; 0xe4 <loadWorld+0x3e>
+		SPISend8Bit(0x00);
+	};
+}
+  f4:	df 91       	pop	r29
+  f6:	cf 91       	pop	r28
+  f8:	0f 91       	pop	r16
+  fa:	08 95       	ret
+
+000000fc <spawnPlayer>:
+
+void spawnPlayer() {
+  fc:	0f 93       	push	r16
+  fe:	cf 93       	push	r28
+ 100:	df 93       	push	r29
+	// player = { 20, 110 };
+	player.x = 20;
+ 102:	e2 e5       	ldi	r30, 0x52	; 82
+ 104:	f1 e0       	ldi	r31, 0x01	; 1
+ 106:	84 e1       	ldi	r24, 0x14	; 20
+ 108:	90 e0       	ldi	r25, 0x00	; 0
+ 10a:	91 83       	std	Z+1, r25	; 0x01
+ 10c:	80 83       	st	Z, r24
+	player.y = 90;
+ 10e:	8a e5       	ldi	r24, 0x5A	; 90
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+ 112:	93 83       	std	Z+3, r25	; 0x03
+ 114:	82 83       	std	Z+2, r24	; 0x02
+	// Player (Just a square for now)
+	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
+ 116:	02 e0       	ldi	r16, 0x02	; 2
+ 118:	23 e6       	ldi	r18, 0x63	; 99
+ 11a:	4d e1       	ldi	r20, 0x1D	; 29
+ 11c:	6a e5       	ldi	r22, 0x5A	; 90
+ 11e:	84 e1       	ldi	r24, 0x14	; 20
+ 120:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+	for(int i = 0; i < 100; i++) {
+ 124:	c0 e0       	ldi	r28, 0x00	; 0
+ 126:	d0 e0       	ldi	r29, 0x00	; 0
+ 128:	04 c0       	rjmp	.+8      	; 0x132 <spawnPlayer+0x36>
+		SPISend8Bit(0x00);
+ 12a:	80 e0       	ldi	r24, 0x00	; 0
+ 12c:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+	// player = { 20, 110 };
+	player.x = 20;
+	player.y = 90;
+	// Player (Just a square for now)
+	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
+	for(int i = 0; i < 100; i++) {
+ 130:	21 96       	adiw	r28, 0x01	; 1
+ 132:	c4 36       	cpi	r28, 0x64	; 100
+ 134:	d1 05       	cpc	r29, r1
+ 136:	cc f3       	brlt	.-14     	; 0x12a <spawnPlayer+0x2e>
+		SPISend8Bit(0x00);
+	};
+}
+ 138:	df 91       	pop	r29
+ 13a:	cf 91       	pop	r28
+ 13c:	0f 91       	pop	r16
+ 13e:	08 95       	ret
+
+00000140 <spawnObstacles>:
+
+void spawnObstacles() {
+	//obstacleList[3] = { 0, 0 };
+	for (int i = 0; i < 3; i++)
+ 140:	80 e0       	ldi	r24, 0x00	; 0
+ 142:	90 e0       	ldi	r25, 0x00	; 0
+ 144:	16 c0       	rjmp	.+44     	; 0x172 <spawnObstacles+0x32>
+	{
+		obstacleList[i].x = SPAWN_X + (i * 50);
+ 146:	42 e3       	ldi	r20, 0x32	; 50
+ 148:	48 9f       	mul	r20, r24
+ 14a:	90 01       	movw	r18, r0
+ 14c:	49 9f       	mul	r20, r25
+ 14e:	30 0d       	add	r19, r0
+ 150:	11 24       	eor	r1, r1
+ 152:	2c 55       	subi	r18, 0x5C	; 92
+ 154:	3f 4f       	sbci	r19, 0xFF	; 255
+ 156:	fc 01       	movw	r30, r24
+ 158:	ee 0f       	add	r30, r30
+ 15a:	ff 1f       	adc	r31, r31
+ 15c:	ee 0f       	add	r30, r30
+ 15e:	ff 1f       	adc	r31, r31
+ 160:	ea 5a       	subi	r30, 0xAA	; 170
+ 162:	fe 4f       	sbci	r31, 0xFE	; 254
+ 164:	31 83       	std	Z+1, r19	; 0x01
+ 166:	20 83       	st	Z, r18
+		obstacleList[i].y = SPAWN_Y;
+ 168:	2a e5       	ldi	r18, 0x5A	; 90
+ 16a:	30 e0       	ldi	r19, 0x00	; 0
+ 16c:	33 83       	std	Z+3, r19	; 0x03
+ 16e:	22 83       	std	Z+2, r18	; 0x02
+	};
+}
+
+void spawnObstacles() {
+	//obstacleList[3] = { 0, 0 };
+	for (int i = 0; i < 3; i++)
+ 170:	01 96       	adiw	r24, 0x01	; 1
+ 172:	83 30       	cpi	r24, 0x03	; 3
+ 174:	91 05       	cpc	r25, r1
+ 176:	3c f3       	brlt	.-50     	; 0x146 <spawnObstacles+0x6>
+		//for(int i = 0; i < ; i++) {
+			//SPISend8Bit(0xE0);
+		//};
+		//obstacleList[i] = newObst;
+	}
+}
+ 178:	08 95       	ret
+
+0000017a <InitGame>:
+	
+int gameOver = 0;
+int jumping = 0;
+
+void InitGame(){
+	gameOver = 0;
+ 17a:	10 92 65 01 	sts	0x0165, r1	; 0x800165 <gameOver+0x1>
+ 17e:	10 92 64 01 	sts	0x0164, r1	; 0x800164 <gameOver>
+	jumping = 0;
+ 182:	10 92 63 01 	sts	0x0163, r1	; 0x800163 <jumping+0x1>
+ 186:	10 92 62 01 	sts	0x0162, r1	; 0x800162 <jumping>
+	loadWorld();
+ 18a:	0e 94 53 00 	call	0xa6	; 0xa6 <loadWorld>
+	spawnPlayer();
+ 18e:	0e 94 7e 00 	call	0xfc	; 0xfc <spawnPlayer>
+	spawnObstacles();
+ 192:	0e 94 a0 00 	call	0x140	; 0x140 <spawnObstacles>
+ 196:	08 95       	ret
+
+00000198 <resetObstacle>:
+		//obstacleList[i] = newObst;
+	}
+}
+
+void resetObstacle(entity *obst) {
+	obst->x = SPAWN_X;
+ 198:	24 ea       	ldi	r18, 0xA4	; 164
+ 19a:	30 e0       	ldi	r19, 0x00	; 0
+ 19c:	fc 01       	movw	r30, r24
+ 19e:	31 83       	std	Z+1, r19	; 0x01
+ 1a0:	20 83       	st	Z, r18
+	obst->y = SPAWN_Y;
+ 1a2:	2a e5       	ldi	r18, 0x5A	; 90
+ 1a4:	30 e0       	ldi	r19, 0x00	; 0
+ 1a6:	33 83       	std	Z+3, r19	; 0x03
+ 1a8:	22 83       	std	Z+2, r18	; 0x02
+ 1aa:	08 95       	ret
+
+000001ac <checkCollision>:
+		};
+	}
+}
+
+int checkCollision(entity obst) {
+	if (obst.x < (player.x + 10) && (obst.x + 10) > player.x)
+ 1ac:	20 91 52 01 	lds	r18, 0x0152	; 0x800152 <__data_end>
+ 1b0:	30 91 53 01 	lds	r19, 0x0153	; 0x800153 <__data_end+0x1>
+ 1b4:	a9 01       	movw	r20, r18
+ 1b6:	46 5f       	subi	r20, 0xF6	; 246
+ 1b8:	5f 4f       	sbci	r21, 0xFF	; 255
+ 1ba:	64 17       	cp	r22, r20
+ 1bc:	75 07       	cpc	r23, r21
+ 1be:	94 f4       	brge	.+36     	; 0x1e4 <checkCollision+0x38>
+ 1c0:	ab 01       	movw	r20, r22
+ 1c2:	46 5f       	subi	r20, 0xF6	; 246
+ 1c4:	5f 4f       	sbci	r21, 0xFF	; 255
+ 1c6:	24 17       	cp	r18, r20
+ 1c8:	35 07       	cpc	r19, r21
+ 1ca:	7c f4       	brge	.+30     	; 0x1ea <checkCollision+0x3e>
+	{
+		if (obst.y < (player.y + 10))
+ 1cc:	20 91 54 01 	lds	r18, 0x0154	; 0x800154 <__data_end+0x2>
+ 1d0:	30 91 55 01 	lds	r19, 0x0155	; 0x800155 <__data_end+0x3>
+ 1d4:	26 5f       	subi	r18, 0xF6	; 246
+ 1d6:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1d8:	82 17       	cp	r24, r18
+ 1da:	93 07       	cpc	r25, r19
+ 1dc:	4c f0       	brlt	.+18     	; 0x1f0 <checkCollision+0x44>
+		{
+			return 1;
+		}
+	}
+	return 0;
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+ 1e0:	90 e0       	ldi	r25, 0x00	; 0
+ 1e2:	08 95       	ret
+ 1e4:	80 e0       	ldi	r24, 0x00	; 0
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+ 1e8:	08 95       	ret
+ 1ea:	80 e0       	ldi	r24, 0x00	; 0
+ 1ec:	90 e0       	ldi	r25, 0x00	; 0
+ 1ee:	08 95       	ret
+int checkCollision(entity obst) {
+	if (obst.x < (player.x + 10) && (obst.x + 10) > player.x)
+	{
+		if (obst.y < (player.y + 10))
+		{
+			return 1;
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	90 e0       	ldi	r25, 0x00	; 0
+		}
+	}
+	return 0;
+}
+ 1f4:	08 95       	ret
+
+000001f6 <moveObstacles>:
+void resetObstacle(entity *obst) {
+	obst->x = SPAWN_X;
+	obst->y = SPAWN_Y;
+}
+
+void moveObstacles() {
+ 1f6:	ef 92       	push	r14
+ 1f8:	ff 92       	push	r15
+ 1fa:	0f 93       	push	r16
+ 1fc:	cf 93       	push	r28
+ 1fe:	df 93       	push	r29
+	for (int i = 0; i < 3; i++)
+ 200:	e1 2c       	mov	r14, r1
+ 202:	f1 2c       	mov	r15, r1
+ 204:	78 c0       	rjmp	.+240    	; 0x2f6 <moveObstacles+0x100>
+	{
+		 //out of picture
+		if (obstacleList[i].x > 170)
+ 206:	f7 01       	movw	r30, r14
+ 208:	ee 0f       	add	r30, r30
+ 20a:	ff 1f       	adc	r31, r31
+ 20c:	ee 0f       	add	r30, r30
+ 20e:	ff 1f       	adc	r31, r31
+ 210:	ea 5a       	subi	r30, 0xAA	; 170
+ 212:	fe 4f       	sbci	r31, 0xFE	; 254
+ 214:	80 81       	ld	r24, Z
+ 216:	91 81       	ldd	r25, Z+1	; 0x01
+ 218:	8b 3a       	cpi	r24, 0xAB	; 171
+ 21a:	91 05       	cpc	r25, r1
+ 21c:	5c f0       	brlt	.+22     	; 0x234 <moveObstacles+0x3e>
+		{
+			obstacleList[i].x -= 1;
+ 21e:	f7 01       	movw	r30, r14
+ 220:	ee 0f       	add	r30, r30
+ 222:	ff 1f       	adc	r31, r31
+ 224:	ee 0f       	add	r30, r30
+ 226:	ff 1f       	adc	r31, r31
+ 228:	ea 5a       	subi	r30, 0xAA	; 170
+ 22a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 22c:	01 97       	sbiw	r24, 0x01	; 1
+ 22e:	91 83       	std	Z+1, r25	; 0x01
+ 230:	80 83       	st	Z, r24
+			continue;
+ 232:	5e c0       	rjmp	.+188    	; 0x2f0 <moveObstacles+0xfa>
+		}
+		 //clear
+		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
+ 234:	f7 01       	movw	r30, r14
+ 236:	ee 0f       	add	r30, r30
+ 238:	ff 1f       	adc	r31, r31
+ 23a:	ee 0f       	add	r30, r30
+ 23c:	ff 1f       	adc	r31, r31
+ 23e:	ea 5a       	subi	r30, 0xAA	; 170
+ 240:	fe 4f       	sbci	r31, 0xFE	; 254
+ 242:	62 81       	ldd	r22, Z+2	; 0x02
+ 244:	29 e0       	ldi	r18, 0x09	; 9
+ 246:	26 0f       	add	r18, r22
+ 248:	49 e0       	ldi	r20, 0x09	; 9
+ 24a:	48 0f       	add	r20, r24
+ 24c:	02 e0       	ldi	r16, 0x02	; 2
+ 24e:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+		for(int i = 0; i < 100; i++) {
+ 252:	c0 e0       	ldi	r28, 0x00	; 0
+ 254:	d0 e0       	ldi	r29, 0x00	; 0
+ 256:	04 c0       	rjmp	.+8      	; 0x260 <moveObstacles+0x6a>
+			SPISend8Bit(0xFF);
+ 258:	8f ef       	ldi	r24, 0xFF	; 255
+ 25a:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+			obstacleList[i].x -= 1;
+			continue;
+		}
+		 //clear
+		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
+		for(int i = 0; i < 100; i++) {
+ 25e:	21 96       	adiw	r28, 0x01	; 1
+ 260:	c4 36       	cpi	r28, 0x64	; 100
+ 262:	d1 05       	cpc	r29, r1
+ 264:	cc f3       	brlt	.-14     	; 0x258 <moveObstacles+0x62>
+			SPISend8Bit(0xFF);
+		};
+		 //reset if passed
+		if (obstacleList[i].x == 0)
+ 266:	f7 01       	movw	r30, r14
+ 268:	ee 0f       	add	r30, r30
+ 26a:	ff 1f       	adc	r31, r31
+ 26c:	ee 0f       	add	r30, r30
+ 26e:	ff 1f       	adc	r31, r31
+ 270:	ea 5a       	subi	r30, 0xAA	; 170
+ 272:	fe 4f       	sbci	r31, 0xFE	; 254
+ 274:	80 81       	ld	r24, Z
+ 276:	91 81       	ldd	r25, Z+1	; 0x01
+ 278:	89 2b       	or	r24, r25
+ 27a:	19 f4       	brne	.+6      	; 0x282 <moveObstacles+0x8c>
+		{
+			resetObstacle(&obstacleList[i]);
+ 27c:	cf 01       	movw	r24, r30
+ 27e:	0e 94 cc 00 	call	0x198	; 0x198 <resetObstacle>
+		}
+		obstacleList[i].x -= 1;
+ 282:	f7 01       	movw	r30, r14
+ 284:	ee 0f       	add	r30, r30
+ 286:	ff 1f       	adc	r31, r31
+ 288:	ee 0f       	add	r30, r30
+ 28a:	ff 1f       	adc	r31, r31
+ 28c:	ea 5a       	subi	r30, 0xAA	; 170
+ 28e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 290:	80 81       	ld	r24, Z
+ 292:	91 81       	ldd	r25, Z+1	; 0x01
+ 294:	01 97       	sbiw	r24, 0x01	; 1
+ 296:	91 83       	std	Z+1, r25	; 0x01
+ 298:	80 83       	st	Z, r24
+		if(checkCollision(obstacleList[i])) {
+ 29a:	60 81       	ld	r22, Z
+ 29c:	71 81       	ldd	r23, Z+1	; 0x01
+ 29e:	82 81       	ldd	r24, Z+2	; 0x02
+ 2a0:	93 81       	ldd	r25, Z+3	; 0x03
+ 2a2:	0e 94 d6 00 	call	0x1ac	; 0x1ac <checkCollision>
+ 2a6:	89 2b       	or	r24, r25
+ 2a8:	49 f0       	breq	.+18     	; 0x2bc <moveObstacles+0xc6>
+			// TODO end game
+			// Buzzer on
+			gameOver = 1;
+ 2aa:	81 e0       	ldi	r24, 0x01	; 1
+ 2ac:	90 e0       	ldi	r25, 0x00	; 0
+ 2ae:	90 93 65 01 	sts	0x0165, r25	; 0x800165 <gameOver+0x1>
+ 2b2:	80 93 64 01 	sts	0x0164, r24	; 0x800164 <gameOver>
+			BUZZER_ON;
+ 2b6:	88 b1       	in	r24, 0x08	; 8
+ 2b8:	82 60       	ori	r24, 0x02	; 2
+ 2ba:	88 b9       	out	0x08, r24	; 8
+		};
+		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
+ 2bc:	f7 01       	movw	r30, r14
+ 2be:	ee 0f       	add	r30, r30
+ 2c0:	ff 1f       	adc	r31, r31
+ 2c2:	ee 0f       	add	r30, r30
+ 2c4:	ff 1f       	adc	r31, r31
+ 2c6:	ea 5a       	subi	r30, 0xAA	; 170
+ 2c8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2ca:	62 81       	ldd	r22, Z+2	; 0x02
+ 2cc:	80 81       	ld	r24, Z
+ 2ce:	29 e0       	ldi	r18, 0x09	; 9
+ 2d0:	26 0f       	add	r18, r22
+ 2d2:	49 e0       	ldi	r20, 0x09	; 9
+ 2d4:	48 0f       	add	r20, r24
+ 2d6:	02 e0       	ldi	r16, 0x02	; 2
+ 2d8:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+		for(int i = 0; i < 100; i++) {
+ 2dc:	c0 e0       	ldi	r28, 0x00	; 0
+ 2de:	d0 e0       	ldi	r29, 0x00	; 0
+ 2e0:	04 c0       	rjmp	.+8      	; 0x2ea <moveObstacles+0xf4>
+			SPISend8Bit(0xE0);
+ 2e2:	80 ee       	ldi	r24, 0xE0	; 224
+ 2e4:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+			// Buzzer on
+			gameOver = 1;
+			BUZZER_ON;
+		};
+		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
+		for(int i = 0; i < 100; i++) {
+ 2e8:	21 96       	adiw	r28, 0x01	; 1
+ 2ea:	c4 36       	cpi	r28, 0x64	; 100
+ 2ec:	d1 05       	cpc	r29, r1
+ 2ee:	cc f3       	brlt	.-14     	; 0x2e2 <moveObstacles+0xec>
+	obst->x = SPAWN_X;
+	obst->y = SPAWN_Y;
+}
+
+void moveObstacles() {
+	for (int i = 0; i < 3; i++)
+ 2f0:	8f ef       	ldi	r24, 0xFF	; 255
+ 2f2:	e8 1a       	sub	r14, r24
+ 2f4:	f8 0a       	sbc	r15, r24
+ 2f6:	83 e0       	ldi	r24, 0x03	; 3
+ 2f8:	e8 16       	cp	r14, r24
+ 2fa:	f1 04       	cpc	r15, r1
+ 2fc:	0c f4       	brge	.+2      	; 0x300 <moveObstacles+0x10a>
+ 2fe:	83 cf       	rjmp	.-250    	; 0x206 <moveObstacles+0x10>
+		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
+		for(int i = 0; i < 100; i++) {
+			SPISend8Bit(0xE0);
+		};
+	}
+}
+ 300:	df 91       	pop	r29
+ 302:	cf 91       	pop	r28
+ 304:	0f 91       	pop	r16
+ 306:	ff 90       	pop	r15
+ 308:	ef 90       	pop	r14
+ 30a:	08 95       	ret
+
+0000030c <jump>:
+	}
+	return 0;
+}
+
+// TODO implement parabolic jump
+void jump(int counter) {
+ 30c:	ef 92       	push	r14
+ 30e:	ff 92       	push	r15
+ 310:	0f 93       	push	r16
+ 312:	cf 93       	push	r28
+ 314:	df 93       	push	r29
+ 316:	7c 01       	movw	r14, r24
+	// clear player
+	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
+ 318:	e2 e5       	ldi	r30, 0x52	; 82
+ 31a:	f1 e0       	ldi	r31, 0x01	; 1
+ 31c:	62 81       	ldd	r22, Z+2	; 0x02
+ 31e:	80 81       	ld	r24, Z
+ 320:	29 e0       	ldi	r18, 0x09	; 9
+ 322:	26 0f       	add	r18, r22
+ 324:	49 e0       	ldi	r20, 0x09	; 9
+ 326:	48 0f       	add	r20, r24
+ 328:	02 e0       	ldi	r16, 0x02	; 2
+ 32a:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+	for(int i = 0; i < 100; i++) {
+ 32e:	c0 e0       	ldi	r28, 0x00	; 0
+ 330:	d0 e0       	ldi	r29, 0x00	; 0
+ 332:	04 c0       	rjmp	.+8      	; 0x33c <jump+0x30>
+		SPISend8Bit(0xFF);
+ 334:	8f ef       	ldi	r24, 0xFF	; 255
+ 336:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+
+// TODO implement parabolic jump
+void jump(int counter) {
+	// clear player
+	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
+	for(int i = 0; i < 100; i++) {
+ 33a:	21 96       	adiw	r28, 0x01	; 1
+ 33c:	c4 36       	cpi	r28, 0x64	; 100
+ 33e:	d1 05       	cpc	r29, r1
+ 340:	cc f3       	brlt	.-14     	; 0x334 <jump+0x28>
+		SPISend8Bit(0xFF);
+	};
+	player.y = 75;
+ 342:	8b e4       	ldi	r24, 0x4B	; 75
+ 344:	90 e0       	ldi	r25, 0x00	; 0
+ 346:	90 93 55 01 	sts	0x0155, r25	; 0x800155 <__data_end+0x3>
+ 34a:	80 93 54 01 	sts	0x0154, r24	; 0x800154 <__data_end+0x2>
+	if (counter > 30)
+ 34e:	8f e1       	ldi	r24, 0x1F	; 31
+ 350:	e8 16       	cp	r14, r24
+ 352:	f1 04       	cpc	r15, r1
+ 354:	34 f0       	brlt	.+12     	; 0x362 <jump+0x56>
+	{
+		player.y = 90;
+ 356:	8a e5       	ldi	r24, 0x5A	; 90
+ 358:	90 e0       	ldi	r25, 0x00	; 0
+ 35a:	90 93 55 01 	sts	0x0155, r25	; 0x800155 <__data_end+0x3>
+ 35e:	80 93 54 01 	sts	0x0154, r24	; 0x800154 <__data_end+0x2>
+	}
+	// draw player
+	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
+ 362:	e2 e5       	ldi	r30, 0x52	; 82
+ 364:	f1 e0       	ldi	r31, 0x01	; 1
+ 366:	62 81       	ldd	r22, Z+2	; 0x02
+ 368:	80 81       	ld	r24, Z
+ 36a:	29 e0       	ldi	r18, 0x09	; 9
+ 36c:	26 0f       	add	r18, r22
+ 36e:	49 e0       	ldi	r20, 0x09	; 9
+ 370:	48 0f       	add	r20, r24
+ 372:	02 e0       	ldi	r16, 0x02	; 2
+ 374:	0e 94 83 02 	call	0x506	; 0x506 <TFT_Window>
+	for(int i = 0; i < 100; i++) {
+ 378:	c0 e0       	ldi	r28, 0x00	; 0
+ 37a:	d0 e0       	ldi	r29, 0x00	; 0
+ 37c:	04 c0       	rjmp	.+8      	; 0x386 <jump+0x7a>
+		SPISend8Bit(0x00);
+ 37e:	80 e0       	ldi	r24, 0x00	; 0
+ 380:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+	{
+		player.y = 90;
+	}
+	// draw player
+	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
+	for(int i = 0; i < 100; i++) {
+ 384:	21 96       	adiw	r28, 0x01	; 1
+ 386:	c4 36       	cpi	r28, 0x64	; 100
+ 388:	d1 05       	cpc	r29, r1
+ 38a:	cc f3       	brlt	.-14     	; 0x37e <jump+0x72>
+		SPISend8Bit(0x00);
+	};
+}
+ 38c:	df 91       	pop	r29
+ 38e:	cf 91       	pop	r28
+ 390:	0f 91       	pop	r16
+ 392:	ff 90       	pop	r15
+ 394:	ef 90       	pop	r14
+ 396:	08 95       	ret
+
+00000398 <SPI_init>:
+const uint8_t TFT_MAX_X = 131;
+const uint8_t TFT_MAX_Y = 175;
+
+void SPI_init(){
+	//set CS, MOSI and SCK to output:
+	SPI_DDR |= (1 << CS) | (1 << MOSI) | (1 << SCK);
+ 398:	84 b1       	in	r24, 0x04	; 4
+ 39a:	8c 62       	ori	r24, 0x2C	; 44
+ 39c:	84 b9       	out	0x04, r24	; 4
+
+	//enable SPI, set as master, and clock to fosc/4:
+	SPCR = (1 << SPE) | (1 << MSTR);
+ 39e:	80 e5       	ldi	r24, 0x50	; 80
+ 3a0:	8c bd       	out	0x2c, r24	; 44
+ 3a2:	08 95       	ret
+
+000003a4 <SPISend8Bit>:
+		PORTD &= ~(1<<D_C);						//Data/Command auf Low => Daten-Modus
+	}
+}
+
+void SPISend8Bit(uint8_t data){
+	PORTB &= ~(1<<CS); //CS low
+ 3a4:	95 b1       	in	r25, 0x05	; 5
+ 3a6:	9b 7f       	andi	r25, 0xFB	; 251
+ 3a8:	95 b9       	out	0x05, r25	; 5
+	SPDR = data; //load data into register
+ 3aa:	8e bd       	out	0x2e, r24	; 46
+	while(!(SPSR & (1 << SPIF))); //wait for transmission complete
+ 3ac:	0d b4       	in	r0, 0x2d	; 45
+ 3ae:	07 fe       	sbrs	r0, 7
+ 3b0:	fd cf       	rjmp	.-6      	; 0x3ac <SPISend8Bit+0x8>
+	PORTB |= (1<<CS); //CS high
+ 3b2:	85 b1       	in	r24, 0x05	; 5
+ 3b4:	84 60       	ori	r24, 0x04	; 4
+ 3b6:	85 b9       	out	0x05, r24	; 5
+ 3b8:	08 95       	ret
+
+000003ba <SendCommandSeq>:
+	SendCommandSeq(&InitData[2], 10);
+	_delay_ms (75);
+	SendCommandSeq(&InitData[12], 23);
+}
+
+void SendCommandSeq(const uint16_t * data, uint16_t Anzahl){
+ 3ba:	8f 92       	push	r8
+ 3bc:	9f 92       	push	r9
+ 3be:	af 92       	push	r10
+ 3c0:	bf 92       	push	r11
+ 3c2:	ef 92       	push	r14
+ 3c4:	ff 92       	push	r15
+ 3c6:	0f 93       	push	r16
+ 3c8:	1f 93       	push	r17
+ 3ca:	cf 93       	push	r28
+ 3cc:	df 93       	push	r29
+ 3ce:	7c 01       	movw	r14, r24
+ 3d0:	8b 01       	movw	r16, r22
+	uint32_t index;
+	uint8_t SendeByte;
+	for (index=0; index<Anzahl; index++){
+ 3d2:	81 2c       	mov	r8, r1
+ 3d4:	91 2c       	mov	r9, r1
+ 3d6:	54 01       	movw	r10, r8
+ 3d8:	16 c0       	rjmp	.+44     	; 0x406 <__EEPROM_REGION_LENGTH__+0x6>
+		PORTD |= (1<<D_C);						//Data/Command auf High => Kommando-Modus, keine Farbdaten rectangle setzen)
+ 3da:	8b b1       	in	r24, 0x0b	; 11
+ 3dc:	84 60       	ori	r24, 0x04	; 4
+ 3de:	8b b9       	out	0x0b, r24	; 11
+		SendeByte = (data[index] >> 8) & 0xFF;	//High-Byte des Kommandos
+ 3e0:	e4 01       	movw	r28, r8
+ 3e2:	cc 0f       	add	r28, r28
+ 3e4:	dd 1f       	adc	r29, r29
+ 3e6:	ce 0d       	add	r28, r14
+ 3e8:	df 1d       	adc	r29, r15
+		SPISend8Bit(SendeByte);
+ 3ea:	89 81       	ldd	r24, Y+1	; 0x01
+ 3ec:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+		SendeByte = data[index] & 0xFF;			//Low-Byte des Kommandos
+		SPISend8Bit(SendeByte);
+ 3f0:	88 81       	ld	r24, Y
+ 3f2:	0e 94 d2 01 	call	0x3a4	; 0x3a4 <SPISend8Bit>
+		PORTD &= ~(1<<D_C);						//Data/Command auf Low => Daten-Modus
+ 3f6:	8b b1       	in	r24, 0x0b	; 11
+ 3f8:	8b 7f       	andi	r24, 0xFB	; 251
+ 3fa:	8b b9       	out	0x0b, r24	; 11
+}
+
+void SendCommandSeq(const uint16_t * data, uint16_t Anzahl){
+	uint32_t index;
+	uint8_t SendeByte;
+	for (index=0; index<Anzahl; index++){
+ 3fc:	8f ef       	ldi	r24, 0xFF	; 255
+ 3fe:	88 1a       	sub	r8, r24
+ 400:	98 0a       	sbc	r9, r24
+ 402:	a8 0a       	sbc	r10, r24
+ 404:	b8 0a       	sbc	r11, r24
+ 406:	c8 01       	movw	r24, r16
+ 408:	a0 e0       	ldi	r26, 0x00	; 0
+ 40a:	b0 e0       	ldi	r27, 0x00	; 0
+ 40c:	88 16       	cp	r8, r24
+ 40e:	99 06       	cpc	r9, r25
+ 410:	aa 06       	cpc	r10, r26
+ 412:	bb 06       	cpc	r11, r27
+ 414:	10 f3       	brcs	.-60     	; 0x3da <SendCommandSeq+0x20>
+		SPISend8Bit(SendeByte);
+		SendeByte = data[index] & 0xFF;			//Low-Byte des Kommandos
+		SPISend8Bit(SendeByte);
+		PORTD &= ~(1<<D_C);						//Data/Command auf Low => Daten-Modus
+	}
+}
+ 416:	df 91       	pop	r29
+ 418:	cf 91       	pop	r28
+ 41a:	1f 91       	pop	r17
+ 41c:	0f 91       	pop	r16
+ 41e:	ff 90       	pop	r15
+ 420:	ef 90       	pop	r14
+ 422:	bf 90       	pop	r11
+ 424:	af 90       	pop	r10
+ 426:	9f 90       	pop	r9
+ 428:	8f 90       	pop	r8
+ 42a:	08 95       	ret
+
+0000042c <Display_init>:
+
+	//enable SPI, set as master, and clock to fosc/4:
+	SPCR = (1 << SPE) | (1 << MSTR);
+}
+
+void Display_init() {
+ 42c:	cf 93       	push	r28
+ 42e:	df 93       	push	r29
+ 430:	cd b7       	in	r28, 0x3d	; 61
+ 432:	de b7       	in	r29, 0x3e	; 62
+ 434:	c6 54       	subi	r28, 0x46	; 70
+ 436:	d1 09       	sbc	r29, r1
+ 438:	0f b6       	in	r0, 0x3f	; 63
+ 43a:	f8 94       	cli
+ 43c:	de bf       	out	0x3e, r29	; 62
+ 43e:	0f be       	out	0x3f, r0	; 63
+ 440:	cd bf       	out	0x3d, r28	; 61
+	DDRD |= (1<<D_C)|(1<<Reset); //output: PD2 -> Data/Command; PD3 -> Reset
+ 442:	8a b1       	in	r24, 0x0a	; 10
+ 444:	8c 60       	ori	r24, 0x0C	; 12
+ 446:	8a b9       	out	0x0a, r24	; 10
+	SPI_init();
+ 448:	0e 94 cc 01 	call	0x398	; 0x398 <SPI_init>
+	const uint16_t InitData[] ={
+ 44c:	86 e4       	ldi	r24, 0x46	; 70
+ 44e:	e0 e0       	ldi	r30, 0x00	; 0
+ 450:	f1 e0       	ldi	r31, 0x01	; 1
+ 452:	de 01       	movw	r26, r28
+ 454:	11 96       	adiw	r26, 0x01	; 1
+ 456:	01 90       	ld	r0, Z+
+ 458:	0d 92       	st	X+, r0
+ 45a:	8a 95       	dec	r24
+ 45c:	e1 f7       	brne	.-8      	; 0x456 <Display_init+0x2a>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 45e:	2f e5       	ldi	r18, 0x5F	; 95
+ 460:	8a ee       	ldi	r24, 0xEA	; 234
+ 462:	90 e0       	ldi	r25, 0x00	; 0
+ 464:	21 50       	subi	r18, 0x01	; 1
+ 466:	80 40       	sbci	r24, 0x00	; 0
+ 468:	90 40       	sbci	r25, 0x00	; 0
+ 46a:	e1 f7       	brne	.-8      	; 0x464 <Display_init+0x38>
+ 46c:	00 c0       	rjmp	.+0      	; 0x46e <Display_init+0x42>
+ 46e:	00 00       	nop
+		0xEF90, 0x0080, 0xEFB0, 0x4902, 0xEF00,
+		0x7F01, 0xE181, 0xE202, 0xE276, 0xE183,
+		0x8001, 0xEF90, 0x0000
+	};
+	_delay_ms(300);
+	PORTD &= !(1<<Reset);			//Reset-Eingang des Displays auf Low => Beginn Hardware-Reset
+ 470:	8b b1       	in	r24, 0x0b	; 11
+ 472:	1b b8       	out	0x0b, r1	; 11
+ 474:	8d e3       	ldi	r24, 0x3D	; 61
+ 476:	99 e4       	ldi	r25, 0x49	; 73
+ 478:	01 97       	sbiw	r24, 0x01	; 1
+ 47a:	f1 f7       	brne	.-4      	; 0x478 <Display_init+0x4c>
+ 47c:	00 c0       	rjmp	.+0      	; 0x47e <Display_init+0x52>
+ 47e:	00 00       	nop
+	_delay_ms(75);
+	PORTB |= (1<<CS);				//SSEL auf High
+ 480:	85 b1       	in	r24, 0x05	; 5
+ 482:	84 60       	ori	r24, 0x04	; 4
+ 484:	85 b9       	out	0x05, r24	; 5
+ 486:	8d e3       	ldi	r24, 0x3D	; 61
+ 488:	99 e4       	ldi	r25, 0x49	; 73
+ 48a:	01 97       	sbiw	r24, 0x01	; 1
+ 48c:	f1 f7       	brne	.-4      	; 0x48a <Display_init+0x5e>
+ 48e:	00 c0       	rjmp	.+0      	; 0x490 <Display_init+0x64>
+ 490:	00 00       	nop
+	_delay_ms(75);
+	PORTD |= (1<<D_C);				//Data/Command auf High
+ 492:	8b b1       	in	r24, 0x0b	; 11
+ 494:	84 60       	ori	r24, 0x04	; 4
+ 496:	8b b9       	out	0x0b, r24	; 11
+ 498:	8d e3       	ldi	r24, 0x3D	; 61
+ 49a:	99 e4       	ldi	r25, 0x49	; 73
+ 49c:	01 97       	sbiw	r24, 0x01	; 1
+ 49e:	f1 f7       	brne	.-4      	; 0x49c <Display_init+0x70>
+ 4a0:	00 c0       	rjmp	.+0      	; 0x4a2 <Display_init+0x76>
+ 4a2:	00 00       	nop
+	_delay_ms(75);
+	PORTD |= (1<<Reset);			//Reset-Eingang des Displays auf High => Ende Hardware Reset
+ 4a4:	8b b1       	in	r24, 0x0b	; 11
+ 4a6:	88 60       	ori	r24, 0x08	; 8
+ 4a8:	8b b9       	out	0x0b, r24	; 11
+ 4aa:	8d e3       	ldi	r24, 0x3D	; 61
+ 4ac:	99 e4       	ldi	r25, 0x49	; 73
+ 4ae:	01 97       	sbiw	r24, 0x01	; 1
+ 4b0:	f1 f7       	brne	.-4      	; 0x4ae <Display_init+0x82>
+ 4b2:	00 c0       	rjmp	.+0      	; 0x4b4 <Display_init+0x88>
+ 4b4:	00 00       	nop
+	_delay_ms (75);
+	SendCommandSeq(&InitData[0], 2);
+ 4b6:	62 e0       	ldi	r22, 0x02	; 2
+ 4b8:	70 e0       	ldi	r23, 0x00	; 0
+ 4ba:	ce 01       	movw	r24, r28
+ 4bc:	01 96       	adiw	r24, 0x01	; 1
+ 4be:	0e 94 dd 01 	call	0x3ba	; 0x3ba <SendCommandSeq>
+ 4c2:	8d e3       	ldi	r24, 0x3D	; 61
+ 4c4:	99 e4       	ldi	r25, 0x49	; 73
+ 4c6:	01 97       	sbiw	r24, 0x01	; 1
+ 4c8:	f1 f7       	brne	.-4      	; 0x4c6 <Display_init+0x9a>
+ 4ca:	00 c0       	rjmp	.+0      	; 0x4cc <Display_init+0xa0>
+ 4cc:	00 00       	nop
+	_delay_ms (75);
+	SendCommandSeq(&InitData[2], 10);
+ 4ce:	6a e0       	ldi	r22, 0x0A	; 10
+ 4d0:	70 e0       	ldi	r23, 0x00	; 0
+ 4d2:	ce 01       	movw	r24, r28
+ 4d4:	05 96       	adiw	r24, 0x05	; 5
+ 4d6:	0e 94 dd 01 	call	0x3ba	; 0x3ba <SendCommandSeq>
+ 4da:	8d e3       	ldi	r24, 0x3D	; 61
+ 4dc:	99 e4       	ldi	r25, 0x49	; 73
+ 4de:	01 97       	sbiw	r24, 0x01	; 1
+ 4e0:	f1 f7       	brne	.-4      	; 0x4de <Display_init+0xb2>
+ 4e2:	00 c0       	rjmp	.+0      	; 0x4e4 <Display_init+0xb8>
+ 4e4:	00 00       	nop
+	_delay_ms (75);
+	SendCommandSeq(&InitData[12], 23);
+ 4e6:	67 e1       	ldi	r22, 0x17	; 23
+ 4e8:	70 e0       	ldi	r23, 0x00	; 0
+ 4ea:	ce 01       	movw	r24, r28
+ 4ec:	49 96       	adiw	r24, 0x19	; 25
+ 4ee:	0e 94 dd 01 	call	0x3ba	; 0x3ba <SendCommandSeq>
+}
+ 4f2:	ca 5b       	subi	r28, 0xBA	; 186
+ 4f4:	df 4f       	sbci	r29, 0xFF	; 255
+ 4f6:	0f b6       	in	r0, 0x3f	; 63
+ 4f8:	f8 94       	cli
+ 4fa:	de bf       	out	0x3e, r29	; 62
+ 4fc:	0f be       	out	0x3f, r0	; 63
+ 4fe:	cd bf       	out	0x3d, r28	; 61
+ 500:	df 91       	pop	r29
+ 502:	cf 91       	pop	r28
+ 504:	08 95       	ret
+
+00000506 <TFT_Window>:
+	SPDR = data; //load data into register
+	while(!(SPSR & (1 << SPIF))); //wait for transmission complete
+	PORTB |= (1<<CS); //CS high
+}
+
+void TFT_Window(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, enum TFT_Orientation orientation) {
+ 506:	0f 93       	push	r16
+ 508:	cf 93       	push	r28
+ 50a:	df 93       	push	r29
+ 50c:	cd b7       	in	r28, 0x3d	; 61
+ 50e:	de b7       	in	r29, 0x3e	; 62
+ 510:	2c 97       	sbiw	r28, 0x0c	; 12
+ 512:	0f b6       	in	r0, 0x3f	; 63
+ 514:	f8 94       	cli
+ 516:	de bf       	out	0x3e, r29	; 62
+ 518:	0f be       	out	0x3f, r0	; 63
+ 51a:	cd bf       	out	0x3d, r28	; 61
+	uint16_t data[] =
+ 51c:	9c e0       	ldi	r25, 0x0C	; 12
+ 51e:	e6 e4       	ldi	r30, 0x46	; 70
+ 520:	f1 e0       	ldi	r31, 0x01	; 1
+ 522:	de 01       	movw	r26, r28
+ 524:	11 96       	adiw	r26, 0x01	; 1
+ 526:	01 90       	ld	r0, Z+
+ 528:	0d 92       	st	X+, r0
+ 52a:	9a 95       	dec	r25
+ 52c:	e1 f7       	brne	.-8      	; 0x526 <TFT_Window+0x20>
+		0x1500, // x2
+		0x1300, // y1
+		0x1600, // y2
+	};
+	
+	switch(orientation) {
+ 52e:	02 30       	cpi	r16, 0x02	; 2
+ 530:	b1 f1       	breq	.+108    	; 0x59e <TFT_Window+0x98>
+ 532:	03 30       	cpi	r16, 0x03	; 3
+ 534:	09 f4       	brne	.+2      	; 0x538 <TFT_Window+0x32>
+ 536:	4e c0       	rjmp	.+156    	; 0x5d4 <TFT_Window+0xce>
+ 538:	01 30       	cpi	r16, 0x01	; 1
+ 53a:	89 f0       	breq	.+34     	; 0x55e <TFT_Window+0x58>
+		default:
+		case TFT_Portrait:
+		data[2] |= x1;
+ 53c:	90 e0       	ldi	r25, 0x00	; 0
+ 53e:	92 61       	ori	r25, 0x12	; 18
+ 540:	9e 83       	std	Y+6, r25	; 0x06
+ 542:	8d 83       	std	Y+5, r24	; 0x05
+		data[3] |= x2;
+ 544:	50 e0       	ldi	r21, 0x00	; 0
+ 546:	55 61       	ori	r21, 0x15	; 21
+ 548:	58 87       	std	Y+8, r21	; 0x08
+ 54a:	4f 83       	std	Y+7, r20	; 0x07
+		data[4] |= y1;
+ 54c:	70 e0       	ldi	r23, 0x00	; 0
+ 54e:	73 61       	ori	r23, 0x13	; 19
+ 550:	7a 87       	std	Y+10, r23	; 0x0a
+ 552:	69 87       	std	Y+9, r22	; 0x09
+		data[5] |= y2;
+ 554:	30 e0       	ldi	r19, 0x00	; 0
+ 556:	36 61       	ori	r19, 0x16	; 22
+ 558:	3c 87       	std	Y+12, r19	; 0x0c
+ 55a:	2b 87       	std	Y+11, r18	; 0x0b
+		break;
+ 55c:	55 c0       	rjmp	.+170    	; 0x608 <TFT_Window+0x102>
+		case TFT_Portrait180:
+		data[1] |= 0x03;
+ 55e:	e3 e0       	ldi	r30, 0x03	; 3
+ 560:	f8 e1       	ldi	r31, 0x18	; 24
+ 562:	fc 83       	std	Y+4, r31	; 0x04
+ 564:	eb 83       	std	Y+3, r30	; 0x03
+		data[2] |= TFT_MAX_X - x1;
+ 566:	e3 e8       	ldi	r30, 0x83	; 131
+ 568:	f0 e0       	ldi	r31, 0x00	; 0
+ 56a:	df 01       	movw	r26, r30
+ 56c:	a8 1b       	sub	r26, r24
+ 56e:	b1 09       	sbc	r27, r1
+ 570:	cd 01       	movw	r24, r26
+ 572:	92 61       	ori	r25, 0x12	; 18
+ 574:	9e 83       	std	Y+6, r25	; 0x06
+ 576:	8d 83       	std	Y+5, r24	; 0x05
+		data[3] |= TFT_MAX_X - x2;
+ 578:	e4 1b       	sub	r30, r20
+ 57a:	f1 09       	sbc	r31, r1
+ 57c:	f5 61       	ori	r31, 0x15	; 21
+ 57e:	f8 87       	std	Y+8, r31	; 0x08
+ 580:	ef 83       	std	Y+7, r30	; 0x07
+		data[4] |= TFT_MAX_Y - y1;
+ 582:	8f ea       	ldi	r24, 0xAF	; 175
+ 584:	90 e0       	ldi	r25, 0x00	; 0
+ 586:	ac 01       	movw	r20, r24
+ 588:	46 1b       	sub	r20, r22
+ 58a:	51 09       	sbc	r21, r1
+ 58c:	53 61       	ori	r21, 0x13	; 19
+ 58e:	5a 87       	std	Y+10, r21	; 0x0a
+ 590:	49 87       	std	Y+9, r20	; 0x09
+		data[5] |= TFT_MAX_Y - y2;
+ 592:	82 1b       	sub	r24, r18
+ 594:	91 09       	sbc	r25, r1
+ 596:	96 61       	ori	r25, 0x16	; 22
+ 598:	9c 87       	std	Y+12, r25	; 0x0c
+ 59a:	8b 87       	std	Y+11, r24	; 0x0b
+		break;
+ 59c:	35 c0       	rjmp	.+106    	; 0x608 <TFT_Window+0x102>
+		case TFT_Landscape:
+		data[1] |= 0x05;
+ 59e:	e5 e0       	ldi	r30, 0x05	; 5
+ 5a0:	f8 e1       	ldi	r31, 0x18	; 24
+ 5a2:	fc 83       	std	Y+4, r31	; 0x04
+ 5a4:	eb 83       	std	Y+3, r30	; 0x03
+		data[2] |= TFT_MAX_X - y1;
+ 5a6:	e3 e8       	ldi	r30, 0x83	; 131
+ 5a8:	f0 e0       	ldi	r31, 0x00	; 0
+ 5aa:	df 01       	movw	r26, r30
+ 5ac:	a6 1b       	sub	r26, r22
+ 5ae:	b1 09       	sbc	r27, r1
+ 5b0:	bd 01       	movw	r22, r26
+ 5b2:	72 61       	ori	r23, 0x12	; 18
+ 5b4:	7e 83       	std	Y+6, r23	; 0x06
+ 5b6:	6d 83       	std	Y+5, r22	; 0x05
+		data[3] |= TFT_MAX_X - y2;
+ 5b8:	e2 1b       	sub	r30, r18
+ 5ba:	f1 09       	sbc	r31, r1
+ 5bc:	f5 61       	ori	r31, 0x15	; 21
+ 5be:	f8 87       	std	Y+8, r31	; 0x08
+ 5c0:	ef 83       	std	Y+7, r30	; 0x07
+		data[4] |= x1;
+ 5c2:	90 e0       	ldi	r25, 0x00	; 0
+ 5c4:	93 61       	ori	r25, 0x13	; 19
+ 5c6:	9a 87       	std	Y+10, r25	; 0x0a
+ 5c8:	89 87       	std	Y+9, r24	; 0x09
+		data[5] |= x2;
+ 5ca:	50 e0       	ldi	r21, 0x00	; 0
+ 5cc:	56 61       	ori	r21, 0x16	; 22
+ 5ce:	5c 87       	std	Y+12, r21	; 0x0c
+ 5d0:	4b 87       	std	Y+11, r20	; 0x0b
+		break;
+ 5d2:	1a c0       	rjmp	.+52     	; 0x608 <TFT_Window+0x102>
+		case TFT_Landscape180:
+		data[1] |= 0x03;
+ 5d4:	e3 e0       	ldi	r30, 0x03	; 3
+ 5d6:	f8 e1       	ldi	r31, 0x18	; 24
+ 5d8:	fc 83       	std	Y+4, r31	; 0x04
+ 5da:	eb 83       	std	Y+3, r30	; 0x03
+		data[2] |= y1;
+ 5dc:	70 e0       	ldi	r23, 0x00	; 0
+ 5de:	72 61       	ori	r23, 0x12	; 18
+ 5e0:	7e 83       	std	Y+6, r23	; 0x06
+ 5e2:	6d 83       	std	Y+5, r22	; 0x05
+		data[3] |= y2;
+ 5e4:	30 e0       	ldi	r19, 0x00	; 0
+ 5e6:	35 61       	ori	r19, 0x15	; 21
+ 5e8:	38 87       	std	Y+8, r19	; 0x08
+ 5ea:	2f 83       	std	Y+7, r18	; 0x07
+		data[4] |= TFT_MAX_Y - x1;
+ 5ec:	2f ea       	ldi	r18, 0xAF	; 175
+ 5ee:	30 e0       	ldi	r19, 0x00	; 0
+ 5f0:	b9 01       	movw	r22, r18
+ 5f2:	68 1b       	sub	r22, r24
+ 5f4:	71 09       	sbc	r23, r1
+ 5f6:	cb 01       	movw	r24, r22
+ 5f8:	93 61       	ori	r25, 0x13	; 19
+ 5fa:	9a 87       	std	Y+10, r25	; 0x0a
+ 5fc:	89 87       	std	Y+9, r24	; 0x09
+		data[5] |= TFT_MAX_Y - x2;
+ 5fe:	24 1b       	sub	r18, r20
+ 600:	31 09       	sbc	r19, r1
+ 602:	36 61       	ori	r19, 0x16	; 22
+ 604:	3c 87       	std	Y+12, r19	; 0x0c
+ 606:	2b 87       	std	Y+11, r18	; 0x0b
+		break;
+	}
+	SendCommandSeq(data, 6);
+ 608:	66 e0       	ldi	r22, 0x06	; 6
+ 60a:	70 e0       	ldi	r23, 0x00	; 0
+ 60c:	ce 01       	movw	r24, r28
+ 60e:	01 96       	adiw	r24, 0x01	; 1
+ 610:	0e 94 dd 01 	call	0x3ba	; 0x3ba <SendCommandSeq>
+ 614:	2c 96       	adiw	r28, 0x0c	; 12
+ 616:	0f b6       	in	r0, 0x3f	; 63
+ 618:	f8 94       	cli
+ 61a:	de bf       	out	0x3e, r29	; 62
+ 61c:	0f be       	out	0x3f, r0	; 63
+ 61e:	cd bf       	out	0x3d, r28	; 61
+ 620:	df 91       	pop	r29
+ 622:	cf 91       	pop	r28
+ 624:	0f 91       	pop	r16
+ 626:	08 95       	ret
+
+00000628 <Sonic_init>:
+	Buttons_init();
+}
+
+void Sonic_init() {
+	// D0 als Output
+	DDRD |= 1;
+ 628:	8a b1       	in	r24, 0x0a	; 10
+ 62a:	81 60       	ori	r24, 0x01	; 1
+ 62c:	8a b9       	out	0x0a, r24	; 10
+	// C5 als Input
+	DDRC &= ~(1<<5);
+ 62e:	87 b1       	in	r24, 0x07	; 7
+ 630:	8f 7d       	andi	r24, 0xDF	; 223
+ 632:	87 b9       	out	0x07, r24	; 7
+ 634:	08 95       	ret
+
+00000636 <LED_init>:
+}
+
+void LED_init() {
+	// C1-4 as output
+	DDRC |= 0b11110;
+ 636:	87 b1       	in	r24, 0x07	; 7
+ 638:	8e 61       	ori	r24, 0x1E	; 30
+ 63a:	87 b9       	out	0x07, r24	; 7
+ 63c:	08 95       	ret
+
+0000063e <Buttons_init>:
+}
+
+void Buttons_init() {
+	// Button 1 as Input
+	DDRD &= ~(1<<1);
+ 63e:	8a b1       	in	r24, 0x0a	; 10
+ 640:	8d 7f       	andi	r24, 0xFD	; 253
+ 642:	8a b9       	out	0x0a, r24	; 10
+	PORTD |= 1<<1;
+ 644:	8b b1       	in	r24, 0x0b	; 11
+ 646:	82 60       	ori	r24, 0x02	; 2
+ 648:	8b b9       	out	0x0b, r24	; 11
+
+	// Interrupt //
+	sei();
+ 64a:	78 94       	sei
+	
+	// Button1
+	PCICR |= (1<<PCIE2);
+ 64c:	e8 e6       	ldi	r30, 0x68	; 104
+ 64e:	f0 e0       	ldi	r31, 0x00	; 0
+ 650:	80 81       	ld	r24, Z
+ 652:	84 60       	ori	r24, 0x04	; 4
+ 654:	80 83       	st	Z, r24
+	PCMSK2 |= (1<<PCINT17);
+ 656:	ad e6       	ldi	r26, 0x6D	; 109
+ 658:	b0 e0       	ldi	r27, 0x00	; 0
+ 65a:	8c 91       	ld	r24, X
+ 65c:	82 60       	ori	r24, 0x02	; 2
+ 65e:	8c 93       	st	X, r24
+	
+	// Sonic
+	PCICR |= (1<<PCIE1);
+ 660:	80 81       	ld	r24, Z
+ 662:	82 60       	ori	r24, 0x02	; 2
+ 664:	80 83       	st	Z, r24
+	PCMSK1 |= (1<<PCINT13);
+ 666:	ec e6       	ldi	r30, 0x6C	; 108
+ 668:	f0 e0       	ldi	r31, 0x00	; 0
+ 66a:	80 81       	ld	r24, Z
+ 66c:	80 62       	ori	r24, 0x20	; 32
+ 66e:	80 83       	st	Z, r24
+	
+	// Timer0 A Match enable
+	TIMSK0 |= (1<<OCIE0A);
+ 670:	ee e6       	ldi	r30, 0x6E	; 110
+ 672:	f0 e0       	ldi	r31, 0x00	; 0
+ 674:	80 81       	ld	r24, Z
+ 676:	82 60       	ori	r24, 0x02	; 2
+ 678:	80 83       	st	Z, r24
+	OCR0A = 250;
+ 67a:	8a ef       	ldi	r24, 0xFA	; 250
+ 67c:	87 bd       	out	0x27, r24	; 39
+	OCR0B = 1;
+ 67e:	81 e0       	ldi	r24, 0x01	; 1
+ 680:	88 bd       	out	0x28, r24	; 40
+	// Configure CTC Mode
 	TCCR0A |= (1<<WGM01);
+ 682:	84 b5       	in	r24, 0x24	; 36
+ 684:	82 60       	ori	r24, 0x02	; 2
+ 686:	84 bd       	out	0x24, r24	; 36
 	TCCR0A &= ~(1<<WGM00);
+ 688:	84 b5       	in	r24, 0x24	; 36
+ 68a:	8e 7f       	andi	r24, 0xFE	; 254
+ 68c:	84 bd       	out	0x24, r24	; 36
 	TCCR0B &= ~(1<<WGM02);
+ 68e:	85 b5       	in	r24, 0x25	; 37
+ 690:	87 7f       	andi	r24, 0xF7	; 247
+ 692:	85 bd       	out	0x25, r24	; 37
 	// Prescaler on 64
 	TCCR0B |= 0b11;
+ 694:	85 b5       	in	r24, 0x25	; 37
+ 696:	83 60       	ori	r24, 0x03	; 3
+ 698:	85 bd       	out	0x25, r24	; 37
 	TCCR0B &= ~(1<<2);
-  96:	ff cf       	rjmp	.-2      	; 0x96 <main>
+ 69a:	85 b5       	in	r24, 0x25	; 37
+ 69c:	8b 7f       	andi	r24, 0xFB	; 251
+ 69e:	85 bd       	out	0x25, r24	; 37
+ 6a0:	08 95       	ret
 
-00000098 <__vector_3>:
+000006a2 <init>:
+	init();
+    while (1) {}
 }
 
+void init(void) {
+	Sonic_init();
+ 6a2:	0e 94 14 03 	call	0x628	; 0x628 <Sonic_init>
+	Display_init();
+ 6a6:	0e 94 16 02 	call	0x42c	; 0x42c <Display_init>
+	LED_init();
+ 6aa:	0e 94 1b 03 	call	0x636	; 0x636 <LED_init>
+	InitGame();
+ 6ae:	0e 94 bd 00 	call	0x17a	; 0x17a <InitGame>
+	Buttons_init();
+ 6b2:	0e 94 1f 03 	call	0x63e	; 0x63e <Buttons_init>
+ 6b6:	08 95       	ret
+
+000006b8 <main>:
+static volatile uint16_t timerCounter = 0;
+
+
+int main(void)
+{
+	init();
+ 6b8:	0e 94 51 03 	call	0x6a2	; 0x6a2 <init>
+ 6bc:	ff cf       	rjmp	.-2      	; 0x6bc <main+0x4>
+
+000006be <__vector_5>:
+	//TCCR0B |= 0b101;
+	//TCCR0B &= ~(1<<1);
+}
 
 // Button 1 ISR
-ISR(PCINT0_vect) {
-  98:	1f 92       	push	r1
-  9a:	0f 92       	push	r0
-  9c:	0f b6       	in	r0, 0x3f	; 63
-  9e:	0f 92       	push	r0
-  a0:	11 24       	eor	r1, r1
-	// TODO Jump
+ISR(PCINT2_vect) {
+ 6be:	1f 92       	push	r1
+ 6c0:	0f 92       	push	r0
+ 6c2:	0f b6       	in	r0, 0x3f	; 63
+ 6c4:	0f 92       	push	r0
+ 6c6:	11 24       	eor	r1, r1
+ 6c8:	8f 93       	push	r24
+ 6ca:	9f 93       	push	r25
+	//LED_ON;
+	jumping = 1;
+ 6cc:	81 e0       	ldi	r24, 0x01	; 1
+ 6ce:	90 e0       	ldi	r25, 0x00	; 0
+ 6d0:	90 93 63 01 	sts	0x0163, r25	; 0x800163 <jumping+0x1>
+ 6d4:	80 93 62 01 	sts	0x0162, r24	; 0x800162 <jumping>
+	PORTD |= 1;
+ 6d8:	8b b1       	in	r24, 0x0b	; 11
+ 6da:	81 60       	ori	r24, 0x01	; 1
+ 6dc:	8b b9       	out	0x0b, r24	; 11
 }
-  a2:	0f 90       	pop	r0
-  a4:	0f be       	out	0x3f, r0	; 63
-  a6:	0f 90       	pop	r0
-  a8:	1f 90       	pop	r1
-  aa:	18 95       	reti
+ 6de:	9f 91       	pop	r25
+ 6e0:	8f 91       	pop	r24
+ 6e2:	0f 90       	pop	r0
+ 6e4:	0f be       	out	0x3f, r0	; 63
+ 6e6:	0f 90       	pop	r0
+ 6e8:	1f 90       	pop	r1
+ 6ea:	18 95       	reti
 
-000000ac <__vector_14>:
+000006ec <__vector_4>:
+
+// Sonic ISR
+ISR(PCINT1_vect) {
+ 6ec:	1f 92       	push	r1
+ 6ee:	0f 92       	push	r0
+ 6f0:	0f b6       	in	r0, 0x3f	; 63
+ 6f2:	0f 92       	push	r0
+ 6f4:	11 24       	eor	r1, r1
+ 6f6:	2f 93       	push	r18
+ 6f8:	8f 93       	push	r24
+ 6fa:	9f 93       	push	r25
+ 6fc:	ef 93       	push	r30
+ 6fe:	ff 93       	push	r31
+	//static volatile uint8_t measured = 0; 
+	TIMSK0 ^= (1<<OCIE0B);
+ 700:	ee e6       	ldi	r30, 0x6E	; 110
+ 702:	f0 e0       	ldi	r31, 0x00	; 0
+ 704:	90 81       	ld	r25, Z
+ 706:	84 e0       	ldi	r24, 0x04	; 4
+ 708:	89 27       	eor	r24, r25
+ 70a:	80 83       	st	Z, r24
+	if (!(TIMSK0 & (1<<OCIE0B)))
+ 70c:	80 81       	ld	r24, Z
+ 70e:	82 fd       	sbrc	r24, 2
+ 710:	0e c0       	rjmp	.+28     	; 0x72e <__vector_4+0x42>
+	{
+		if (((timerCounter * 4) / 58) < 10) {
+ 712:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <timerCounter>
+ 716:	90 91 6a 01 	lds	r25, 0x016A	; 0x80016a <timerCounter+0x1>
+ 71a:	88 0f       	add	r24, r24
+ 71c:	99 1f       	adc	r25, r25
+ 71e:	88 0f       	add	r24, r24
+ 720:	99 1f       	adc	r25, r25
+ 722:	84 34       	cpi	r24, 0x44	; 68
+ 724:	92 40       	sbci	r25, 0x02	; 2
+ 726:	18 f4       	brcc	.+6      	; 0x72e <__vector_4+0x42>
+			LED_ON;
+ 728:	88 b1       	in	r24, 0x08	; 8
+ 72a:	80 61       	ori	r24, 0x10	; 16
+ 72c:	88 b9       	out	0x08, r24	; 8
+		}
+	}
+	timerCounter == 0;
+ 72e:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <timerCounter>
+ 732:	90 91 6a 01 	lds	r25, 0x016A	; 0x80016a <timerCounter+0x1>
+}
+ 736:	ff 91       	pop	r31
+ 738:	ef 91       	pop	r30
+ 73a:	9f 91       	pop	r25
+ 73c:	8f 91       	pop	r24
+ 73e:	2f 91       	pop	r18
+ 740:	0f 90       	pop	r0
+ 742:	0f be       	out	0x3f, r0	; 63
+ 744:	0f 90       	pop	r0
+ 746:	1f 90       	pop	r1
+ 748:	18 95       	reti
+
+0000074a <__vector_15>:
+
+ISR(TIMER0_COMPB_vect){
+ 74a:	1f 92       	push	r1
+ 74c:	0f 92       	push	r0
+ 74e:	0f b6       	in	r0, 0x3f	; 63
+ 750:	0f 92       	push	r0
+ 752:	11 24       	eor	r1, r1
+ 754:	8f 93       	push	r24
+ 756:	9f 93       	push	r25
+	timerCounter++;
+ 758:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <timerCounter>
+ 75c:	90 91 6a 01 	lds	r25, 0x016A	; 0x80016a <timerCounter+0x1>
+ 760:	01 96       	adiw	r24, 0x01	; 1
+ 762:	90 93 6a 01 	sts	0x016A, r25	; 0x80016a <timerCounter+0x1>
+ 766:	80 93 69 01 	sts	0x0169, r24	; 0x800169 <timerCounter>
+}
+ 76a:	9f 91       	pop	r25
+ 76c:	8f 91       	pop	r24
+ 76e:	0f 90       	pop	r0
+ 770:	0f be       	out	0x3f, r0	; 63
+ 772:	0f 90       	pop	r0
+ 774:	1f 90       	pop	r1
+ 776:	18 95       	reti
+
+00000778 <__vector_14>:
 
 ISR(TIMER0_COMPA_vect){
-  ac:	1f 92       	push	r1
-  ae:	0f 92       	push	r0
-  b0:	0f b6       	in	r0, 0x3f	; 63
-  b2:	0f 92       	push	r0
-  b4:	11 24       	eor	r1, r1
+ 778:	1f 92       	push	r1
+ 77a:	0f 92       	push	r0
+ 77c:	0f b6       	in	r0, 0x3f	; 63
+ 77e:	0f 92       	push	r0
+ 780:	11 24       	eor	r1, r1
+ 782:	2f 93       	push	r18
+ 784:	3f 93       	push	r19
+ 786:	4f 93       	push	r20
+ 788:	5f 93       	push	r21
+ 78a:	6f 93       	push	r22
+ 78c:	7f 93       	push	r23
+ 78e:	8f 93       	push	r24
+ 790:	9f 93       	push	r25
+ 792:	af 93       	push	r26
+ 794:	bf 93       	push	r27
+ 796:	ef 93       	push	r30
+ 798:	ff 93       	push	r31
+	static volatile uint8_t gameCounter = 0;
+	static volatile uint8_t jumpCounter = 0;
+	static volatile uint8_t overCounter = 0;
+	
+	if (!gameOver) {
+ 79a:	80 91 64 01 	lds	r24, 0x0164	; 0x800164 <gameOver>
+ 79e:	90 91 65 01 	lds	r25, 0x0165	; 0x800165 <gameOver+0x1>
+ 7a2:	89 2b       	or	r24, r25
+ 7a4:	59 f5       	brne	.+86     	; 0x7fc <__vector_14+0x84>
+		// game ticks
+		if (gameCounter == 25)
+ 7a6:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <gameCounter.1672>
+ 7aa:	89 31       	cpi	r24, 0x19	; 25
+ 7ac:	09 f5       	brne	.+66     	; 0x7f0 <__vector_14+0x78>
+		{
+			moveObstacles();
+ 7ae:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <moveObstacles>
+			// jumping
+			if (jumping)
+ 7b2:	80 91 62 01 	lds	r24, 0x0162	; 0x800162 <jumping>
+ 7b6:	90 91 63 01 	lds	r25, 0x0163	; 0x800163 <jumping+0x1>
+ 7ba:	89 2b       	or	r24, r25
+ 7bc:	b9 f0       	breq	.+46     	; 0x7ec <__vector_14+0x74>
+			{
+				PORTD &= ~(1);
+ 7be:	8b b1       	in	r24, 0x0b	; 11
+ 7c0:	8e 7f       	andi	r24, 0xFE	; 254
+ 7c2:	8b b9       	out	0x0b, r24	; 11
+				//LED_ON;
+				jump(jumpCounter);
+ 7c4:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <jumpCounter.1673>
+ 7c8:	90 e0       	ldi	r25, 0x00	; 0
+ 7ca:	0e 94 86 01 	call	0x30c	; 0x30c <jump>
+				jumpCounter++;
+ 7ce:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <jumpCounter.1673>
+ 7d2:	8f 5f       	subi	r24, 0xFF	; 255
+ 7d4:	80 93 67 01 	sts	0x0167, r24	; 0x800167 <jumpCounter.1673>
+				if (jumpCounter == 36)
+ 7d8:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <jumpCounter.1673>
+ 7dc:	84 32       	cpi	r24, 0x24	; 36
+ 7de:	31 f4       	brne	.+12     	; 0x7ec <__vector_14+0x74>
+				{
+					jumping = 0;
+ 7e0:	10 92 63 01 	sts	0x0163, r1	; 0x800163 <jumping+0x1>
+ 7e4:	10 92 62 01 	sts	0x0162, r1	; 0x800162 <jumping>
+					jumpCounter = 0;
+ 7e8:	10 92 67 01 	sts	0x0167, r1	; 0x800167 <jumpCounter.1673>
+				};
+			};
+			gameCounter = 0;
+ 7ec:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <gameCounter.1672>
+		};
+		gameCounter++;
+ 7f0:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <gameCounter.1672>
+ 7f4:	8f 5f       	subi	r24, 0xFF	; 255
+ 7f6:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <gameCounter.1672>
+ 7fa:	16 c0       	rjmp	.+44     	; 0x828 <__DATA_REGION_LENGTH__+0x28>
+	} else {
+		if (overCounter == 255)
+ 7fc:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <overCounter.1674>
+ 800:	8f 3f       	cpi	r24, 0xFF	; 255
+ 802:	69 f4       	brne	.+26     	; 0x81e <__DATA_REGION_LENGTH__+0x1e>
+		{
+			BUZZER_OFF;
+ 804:	88 b1       	in	r24, 0x08	; 8
+ 806:	8d 7f       	andi	r24, 0xFD	; 253
+ 808:	88 b9       	out	0x08, r24	; 8
+			LED_OFF;
+ 80a:	88 b1       	in	r24, 0x08	; 8
+ 80c:	8f 7e       	andi	r24, 0xEF	; 239
+ 80e:	88 b9       	out	0x08, r24	; 8
+			if (BUTTON_PRESS)
+ 810:	49 99       	sbic	0x09, 1	; 9
+ 812:	0a c0       	rjmp	.+20     	; 0x828 <__DATA_REGION_LENGTH__+0x28>
+			{
+				InitGame();
+ 814:	0e 94 bd 00 	call	0x17a	; 0x17a <InitGame>
+				overCounter == 0;
+ 818:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <overCounter.1674>
+ 81c:	05 c0       	rjmp	.+10     	; 0x828 <__DATA_REGION_LENGTH__+0x28>
+			}	
+		} else {
+			overCounter++;
+ 81e:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <overCounter.1674>
+ 822:	8f 5f       	subi	r24, 0xFF	; 255
+ 824:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <overCounter.1674>
+	
 	// TODO measure ultrasonic time
 	// jede ms
 	// TODO gameticks
-	// 
-  b6:	0f 90       	pop	r0
-  b8:	0f be       	out	0x3f, r0	; 63
-  ba:	0f 90       	pop	r0
-  bc:	1f 90       	pop	r1
-  be:	18 95       	reti
+	//
+ 828:	ff 91       	pop	r31
+ 82a:	ef 91       	pop	r30
+ 82c:	bf 91       	pop	r27
+ 82e:	af 91       	pop	r26
+ 830:	9f 91       	pop	r25
+ 832:	8f 91       	pop	r24
+ 834:	7f 91       	pop	r23
+ 836:	6f 91       	pop	r22
+ 838:	5f 91       	pop	r21
+ 83a:	4f 91       	pop	r20
+ 83c:	3f 91       	pop	r19
+ 83e:	2f 91       	pop	r18
+ 840:	0f 90       	pop	r0
+ 842:	0f be       	out	0x3f, r0	; 63
+ 844:	0f 90       	pop	r0
+ 846:	1f 90       	pop	r1
+ 848:	18 95       	reti
 
-000000c0 <_exit>:
-  c0:	f8 94       	cli
+0000084a <_exit>:
+ 84a:	f8 94       	cli
 
-000000c2 <__stop_program>:
-  c2:	ff cf       	rjmp	.-2      	; 0xc2 <__stop_program>
+0000084c <__stop_program>:
+ 84c:	ff cf       	rjmp	.-2      	; 0x84c <__stop_program>

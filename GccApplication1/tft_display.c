@@ -19,7 +19,17 @@
 const uint8_t TFT_MAX_X = 131;
 const uint8_t TFT_MAX_Y = 175;
 
+void SPI_init(){
+	//set CS, MOSI and SCK to output:
+	SPI_DDR |= (1 << CS) | (1 << MOSI) | (1 << SCK);
+
+	//enable SPI, set as master, and clock to fosc/4:
+	SPCR = (1 << SPE) | (1 << MSTR);
+}
+
 void Display_init() {
+	DDRD |= (1<<D_C)|(1<<Reset); //output: PD2 -> Data/Command; PD3 -> Reset
+	SPI_init();
 	const uint16_t InitData[] ={
 		//Initialisierungsdaten fuer 256 Farben Modus
 		0xFDFD, 0xFDFD,

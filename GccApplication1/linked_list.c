@@ -7,8 +7,8 @@
 
 #include "linked_list.h"
 
-//node new(void * pointer) {
-	//node newNode; 
-	//newNode = { pointer, NULL};
-	//return newNode;
-//}
+node push(node * head) {
+	node * current;
+	newNode = { pointer, NULL};
+	return newNode;
+}
