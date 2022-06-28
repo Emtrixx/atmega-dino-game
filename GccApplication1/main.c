@@ -6,7 +6,6 @@
  */ 
 
 #define debug
-#define F_CPU 16E6
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "tft_display.h"
@@ -14,7 +13,11 @@
 
 #define LED_ON		PORTC |= 1<<PORTC4
 #define LED_OFF	PORTC &= ~(1<<PORTC4)
-#define BUTTON_PRESS !(PIND & (1<<PIND1))
+#define BUTTON_1_PRESS !(PIND & (1<<PIND1))
+#define TRIGGER_ON PORTD |= 1
+#define TRIGGER_OFF PORTD &= ~(1)
+#define TIMER2_ON	TCCR2B |= 1<<CS21
+#define TIMER2_OFF	TCCR2B &= ~(1<<CS21)
 
 static volatile uint16_t timerCounter = 0;
 
@@ -26,11 +29,18 @@ int main(void)
 }
 
 void init(void) {
+	// Interrupt
+	sei();
+	
 	Sonic_init();
 	Display_init();
-	LED_init();
 	InitGame();
 	Buttons_init();
+	Timer_init();
+	
+	//debug
+	// C1-4 as output
+	DDRC |= 0b11110;
 }
 
 void Sonic_init() {
@@ -38,11 +48,9 @@ void Sonic_init() {
 	DDRD |= 1;
 	// C5 als Input
 	DDRC &= ~(1<<5);
-}
-
-void LED_init() {
-	// C1-4 as output
-	DDRC |= 0b11110;
+	// Interrupt
+	PCICR |= (1<<PCIE1);
+	PCMSK1 |= (1<<PCINT13);
 }
 
 void Buttons_init() {
@@ -50,21 +58,15 @@ void Buttons_init() {
 	DDRD &= ~(1<<1);
 	PORTD |= 1<<1;
 
-	// Interrupt //
-	sei();
-	
 	// Button1
 	PCICR |= (1<<PCIE2);
 	PCMSK2 |= (1<<PCINT17);
-	
-	// Sonic
-	PCICR |= (1<<PCIE1);
-	PCMSK1 |= (1<<PCINT13);
-	
+}
+
+Timer_init(){
 	// Timer0 A Match enable
 	TIMSK0 |= (1<<OCIE0A);
 	OCR0A = 250;
-	OCR0B = 1;
 	// Configure CTC Mode
 	TCCR0A |= (1<<WGM01);
 	TCCR0A &= ~(1<<WGM00);
@@ -75,47 +77,94 @@ void Buttons_init() {
 	// Prescaler 1024
 	//TCCR0B |= 0b101;
 	//TCCR0B &= ~(1<<1);
+	
+	//Timer2 A Match enable
+	TIMSK2 |= (1<<OCIE2A);
+	OCR2A = 250;
+	// Configure CTC Mode
+	TCCR2A |= (1<<WGM01);
+	TCCR2A &= ~(1<<WGM00);
+	TCCR2B &= ~(1<<WGM02);
+	//Prescaler 8
+	TCCR2B |= 1<<CS21;
+	TCCR2B &= ~(1<<CS20);
+	TCCR2B &= ~(1<<CS22);
 }
 
 // Button 1 ISR
 ISR(PCINT2_vect) {
-	//LED_ON;
-	jumping = 1;
-	PORTD |= 1;
+	//jumping = 1;
+	//TRIGGER_ON;
 }
 
 // Sonic ISR
 ISR(PCINT1_vect) {
-	//static volatile uint8_t measured = 0; 
-	TIMSK0 ^= (1<<OCIE0B);
-	if (!(TIMSK0 & (1<<OCIE0B)))
+	//static volatile uint8_t measured = 0;
+	//TRIGGER_OFF; 
+	//TIMSK0 ^= (1<<OCIE0B);
+	timerCounter = 0;
+	if (!((TIMSK0>>OCIE0B) & 1))
 	{
-		if (((timerCounter * 4) / 58) < 6) {
-			LED_ON;
+		TIMER2_OFF;
+		LED_ON;
+		uint16_t rangeCalc = (timerCounter / 14);
+		//logInt(rangeCalc);
+		timerCounter = 0;
+		if (rangeCalc < 6) {
+			//LED_ON;
 		}
+	} else {
+		TIMER2_ON;
 	}
-	timerCounter == 0;
 }
 
-ISR(TIMER0_COMPB_vect){
+void logInt(uint16_t counter) {
+	char str[12];
+	sprintf(str, "%d", counter);
+	TFT_Print(str, 85, 42, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+}
+
+
+// Timer 2 - Distance Counter
+ISR(TIMER2_COMPA_vect){
+	//LED_ON;
 	timerCounter++;
+	if (timerCounter > 12)
+	{
+		//TRIGGER_OFF;
+	}
 }
 
+// Timer 0 - Game Loop
 ISR(TIMER0_COMPA_vect){
+	static volatile uint8_t counter1 = 0;
 	static volatile uint8_t gameCounter = 0;
 	static volatile uint8_t jumpCounter = 0;
 	static volatile uint8_t overCounter = 0;
+	
+	// Polling for debugging
+	if (BUTTON_1_PRESS) {
+		counter1++;
+		if (counter1 == 100)
+		{
+			counter1 = 0;
+			jumping = 1;
+			TRIGGER_ON;
+		}
+	} else
+	{
+		TRIGGER_OFF;
+		counter1 = 0;
+	}
 	
 	if (!gameOver) {
 		// game ticks
 		if (gameCounter == 25)
 		{
-			moveObstacles();
+			
 			// jumping
 			if (jumping)
 			{
-				PORTD &= ~(1);
-				//LED_ON;
 				jump(jumpCounter);
 				jumpCounter++;
 				if (jumpCounter == 36)
@@ -124,6 +173,7 @@ ISR(TIMER0_COMPA_vect){
 					jumpCounter = 0;
 				};
 			};
+			moveObstacles();
 			gameCounter = 0;
 		};
 		gameCounter++;
@@ -132,7 +182,7 @@ ISR(TIMER0_COMPA_vect){
 		{
 			BUZZER_OFF;
 			LED_OFF;
-			if (BUTTON_PRESS)
+			if (BUTTON_1_PRESS)
 			{
 				InitGame();
 			}	

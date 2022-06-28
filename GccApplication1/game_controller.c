@@ -18,8 +18,13 @@
 entity obstacleList[3] = {{0, 0}};
 entity player = {0,0};
 	
-int gameOver = 0;
-int jumping = 0;
+int gameOver;
+int jumping;
+
+void loadWorld(void);
+void spawnPlayer(void);
+void spawnObstacles(void);
+int checkCollision(entity obst);
 
 void InitGame(){
 	gameOver = 0;
@@ -27,12 +32,13 @@ void InitGame(){
 	loadWorld();
 	spawnPlayer();
 	spawnObstacles();
+	counterDisplay();
 }
 
 /*
  *	Loads the world 
  */
-void loadWorld() {
+void loadWorld(void) {
 	// Background
 	TFT_Window(0, 0, 175, 131, TFT_Landscape);
 	for(int i = 0; i < 23232; i++) {
@@ -45,7 +51,7 @@ void loadWorld() {
 	};
 }
 
-void spawnPlayer() {
+void spawnPlayer(void) {
 	// player = { 20, 110 };
 	player.x = 20;
 	player.y = 90;
@@ -56,18 +62,11 @@ void spawnPlayer() {
 	};
 }
 
-void spawnObstacles() {
-	//obstacleList[3] = { 0, 0 };
+void spawnObstacles(void) {
 	for (int i = 0; i < 3; i++)
 	{
 		obstacleList[i].x = SPAWN_X + (i * 50);
 		obstacleList[i].y = SPAWN_Y;
-		//entity newObst = { SPAWN_X + (50 + (i * 10)), SPAWN_Y };
-		//TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 10, obstacleList[i].y + 10, TFT_Landscape);
-		//for(int i = 0; i < ; i++) {
-			//SPISend8Bit(0xE0);
-		//};
-		//obstacleList[i] = newObst;
 	}
 }
 
@@ -85,7 +84,7 @@ void moveObstacles() {
 			obstacleList[i].x -= 1;
 			continue;
 		}
-		 //clear
+		//clear
 		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
 		for(int i = 0; i < 100; i++) {
 			SPISend8Bit(0xFF);
@@ -93,15 +92,17 @@ void moveObstacles() {
 		 //reset if passed
 		if (obstacleList[i].x == 0)
 		{
+			counterDisplay();
 			resetObstacle(&obstacleList[i]);
 		}
 		obstacleList[i].x -= 1;
+		//check Collision
 		if(checkCollision(obstacleList[i])) {
-			// TODO end game
-			// Buzzer on
-			gameOver = 1;
+			setGameOver();
 			BUZZER_ON;
+			return;
 		};
+		// draw obstacle
 		TFT_Window(obstacleList[i].x, obstacleList[i].y, obstacleList[i].x + 9, obstacleList[i].y + 9, TFT_Landscape);
 		for(int i = 0; i < 100; i++) {
 			SPISend8Bit(0xE0);
@@ -127,6 +128,7 @@ void jump(int counter) {
 	for(int i = 0; i < 100; i++) {
 		SPISend8Bit(0xFF);
 	};
+	// set jump 
 	player.y = 75;
 	if (counter > 30)
 	{
@@ -137,6 +139,25 @@ void jump(int counter) {
 	for(int i = 0; i < 100; i++) {
 		SPISend8Bit(0x00);
 	};
+}
+
+void counterDisplay() {
+	static volatile uint16_t scoreCounter = 0;
+	char str[12];
+	sprintf(str, "%d", scoreCounter);
+	TFT_Print(str, 85, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+	scoreCounter++;
+}
+
+void setGameOver() {
+	TFT_Window(0, 0, 175, 131, TFT_Landscape);
+	for(int i = 0; i < 23232; i++) {
+		SPISend8Bit(0xFF);
+	};
+	gameOver = 1;
+	char str[] = "Game Over";
+	//TODO change position
+	TFT_Print(str, 35, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
 }
 
 // Helper
