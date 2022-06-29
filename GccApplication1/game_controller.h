@@ -19,6 +19,8 @@ typedef struct {
 
 int gameOver;
 int jumping;
+int speed;
+//static volatile uint8_t triggerOnBool = 0;
 
 void InitGame();
 

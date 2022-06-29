@@ -8,9 +8,14 @@
 #include "game_controller.h"
 #include "tft_display.h"
 #include <math.h>
+#include <stdlib.h>
 
 #define SPAWN_X 164
 #define SPAWN_Y 90
+#define PI 3.14
+
+//#define TRIGGER_ON PORTD |= (1<<PORTD0)
+//#define TIMER2_ON	TCCR2B |= (1<<CS21)
 
 //const uint8_t TFT_MAX_X = 131;
 //const uint8_t TFT_MAX_Y = 175;
@@ -21,6 +26,8 @@ entity player = {0,0};
 int gameOver;
 int jumping;
 
+static volatile uint16_t scoreCounter = 0;
+
 void loadWorld(void);
 void spawnPlayer(void);
 void spawnObstacles(void);
@@ -29,10 +36,12 @@ int checkCollision(entity obst);
 void InitGame(){
 	gameOver = 0;
 	jumping = 0;
+	speed = 0;
 	loadWorld();
 	spawnPlayer();
 	spawnObstacles();
 	counterDisplay();
+	randInit();
 }
 
 /*
@@ -49,6 +58,12 @@ void loadWorld(void) {
 	for(int i = 0; i < 1760; i++) {
 		SPISend8Bit(0x00);
 	};
+}
+
+void randInit() {
+   //time_t t;
+   //
+   //srand((unsigned) time(&t));
 }
 
 void spawnPlayer(void) {
@@ -71,7 +86,7 @@ void spawnObstacles(void) {
 }
 
 void resetObstacle(entity *obst) {
-	obst->x = SPAWN_X;
+	obst->x = SPAWN_X + (rand()%15);
 	obst->y = SPAWN_Y;
 }
 
@@ -79,7 +94,7 @@ void moveObstacles() {
 	for (int i = 0; i < 3; i++)
 	{
 		 //out of picture
-		if (obstacleList[i].x > 170)
+		if (obstacleList[i].x > 175)
 		{
 			obstacleList[i].x -= 1;
 			continue;
@@ -98,8 +113,8 @@ void moveObstacles() {
 		obstacleList[i].x -= 1;
 		//check Collision
 		if(checkCollision(obstacleList[i])) {
-			setGameOver();
 			BUZZER_ON;
+			setGameOver();
 			return;
 		};
 		// draw obstacle
@@ -129,11 +144,7 @@ void jump(int counter) {
 		SPISend8Bit(0xFF);
 	};
 	// set jump 
-	player.y = 75;
-	if (counter > 30)
-	{
-		player.y = 90;
-	}
+	player.y = jumpHeight2(counter);
 	// draw player
 	TFT_Window(player.x, player.y, player.x + 9, player.y + 9, TFT_Landscape);
 	for(int i = 0; i < 100; i++) {
@@ -142,7 +153,7 @@ void jump(int counter) {
 }
 
 void counterDisplay() {
-	static volatile uint16_t scoreCounter = 0;
+	speed = (int) (scoreCounter / 3);
 	char str[12];
 	sprintf(str, "%d", scoreCounter);
 	TFT_Print(str, 85, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
@@ -155,12 +166,84 @@ void setGameOver() {
 		SPISend8Bit(0xFF);
 	};
 	gameOver = 1;
+	scoreCounter = 0;
 	char str[] = "Game Over";
-	//TODO change position
 	TFT_Print(str, 35, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
 }
 
+//void measureDistance() {
+	//triggerOnBool = 1;
+	//TCNT2 = 0;
+	//TRIGGER_ON;
+	//TIMER2_ON;
+//}
+
 // Helper
+int jumpHeight(int counter) {
+	static volatile float acc = 0.0;
+	static volatile float denom = 2.0;
+	int height;
+	
+	if (counter<10) {
+		acc += ((float)1)/denom;
+		denom++;
+		height = 90 - ((int) (15.0 * acc));
+		logFloat(acc);
+	}else if (counter < 20) {
+		acc = 0.0;
+		denom = 2.0;
+		height = 75;
+	} else if (counter < 30) {
+		acc += ((float)1)/denom;
+		height = 75 + ((int) (15.0 * acc));
+	} else {
+		acc = 0.0;
+		denom = 2.0;
+		height = 90;
+	}
+	return height;
+}
+
+int jumpHeight2(int counter) {
+	static volatile int acc = 1;
+	int height;
+	
+	if (counter<10) {
+		height = 90 - sinJump(acc);
+		acc++;
+	}else if (counter < 26) {
+		acc = 1;
+		height = 70;
+	} else if (counter < 36) {
+		height = 70 + sinJump(acc);
+		acc++;
+	} else {
+		acc = 1;
+		height = 90;
+	}
+	return height;
+}
+
+void logFloat(float counter) {
+	TFT_Window(85, 42, 170, 60, TFT_Landscape);
+	for(int i = 0; i < 1643; i++) {
+		SPISend8Bit(0xFF);
+	};
+	char str[12];
+	sprintf(str, "%d", counter);
+	TFT_Print(str, 85, 62, 1, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+}
+
+void logInt2(uint16_t counter) {
+	TFT_Window(85, 42, 170, 60, TFT_Landscape);
+	for(int i = 0; i < 1643; i++) {
+		SPISend8Bit(0xFF);
+	};
+	char str[12];
+	sprintf(str, "%d", counter);
+	TFT_Print(str, 85, 42, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+}
+
 int pow_int(int n, int power) {
 	if (power == 0)
 	{
@@ -174,5 +257,6 @@ int pow_int(int n, int power) {
 }
 
 int sinJump(int counter) {
-	return (int) ((double) counter);
+	double n = (double)counter / (10.0 / (PI/2));
+	return 20.0 * sin(n);
 }

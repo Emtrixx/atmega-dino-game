@@ -14,12 +14,15 @@
 #define LED_ON		PORTC |= 1<<PORTC4
 #define LED_OFF	PORTC &= ~(1<<PORTC4)
 #define BUTTON_1_PRESS !(PIND & (1<<PIND1))
-#define TRIGGER_ON PORTD |= 1
-#define TRIGGER_OFF PORTD &= ~(1)
-#define TIMER2_ON	TCCR2B |= 1<<CS21
+#define TRIGGER_ON PORTD |= (1<<PORTD0)
+#define TRIGGER_OFF PORTD &= ~(1<<PORTD0)
+#define TIMER2_ON	TCCR2B |= (1<<CS21)
 #define TIMER2_OFF	TCCR2B &= ~(1<<CS21)
+#define ECHO_PIN (PINC>>PINC5)&1
 
 static volatile uint16_t timerCounter = 0;
+static volatile uint8_t triggerOnBool = 0;
+static volatile uint8_t idleBool = 0;
 
 
 int main(void)
@@ -44,9 +47,9 @@ void init(void) {
 }
 
 void Sonic_init() {
-	// D0 als Output
+	// D0 as Output
 	DDRD |= 1;
-	// C5 als Input
+	// C5 as Input
 	DDRC &= ~(1<<5);
 	// Interrupt
 	PCICR |= (1<<PCIE1);
@@ -80,59 +83,77 @@ Timer_init(){
 	
 	//Timer2 A Match enable
 	TIMSK2 |= (1<<OCIE2A);
-	OCR2A = 250;
+	OCR2A = 116;
 	// Configure CTC Mode
-	TCCR2A |= (1<<WGM01);
-	TCCR2A &= ~(1<<WGM00);
-	TCCR2B &= ~(1<<WGM02);
-	//Prescaler 8
-	TCCR2B |= 1<<CS21;
+	TCCR2A |= (1<<WGM21);
+	TCCR2A &= ~(1<<WGM20);
+	TCCR2B &= ~(1<<WGM22);
+	//Prescaler aus
+	//TCCR2B &= ~(1<<CS21);
 	TCCR2B &= ~(1<<CS20);
 	TCCR2B &= ~(1<<CS22);
 }
 
 // Button 1 ISR
 ISR(PCINT2_vect) {
-	//jumping = 1;
-	//TRIGGER_ON;
+	jumping = 1;
 }
 
 // Sonic ISR
 ISR(PCINT1_vect) {
-	//static volatile uint8_t measured = 0;
-	//TRIGGER_OFF; 
-	//TIMSK0 ^= (1<<OCIE0B);
-	timerCounter = 0;
-	if (!((TIMSK0>>OCIE0B) & 1))
-	{
-		TIMER2_OFF;
-		LED_ON;
-		uint16_t rangeCalc = (timerCounter / 14);
-		//logInt(rangeCalc);
+	static volatile uint16_t absentCounter = 0;
+	
+	if (ECHO_PIN){
 		timerCounter = 0;
-		if (rangeCalc < 6) {
-			//LED_ON;
-		}
 	} else {
-		TIMER2_ON;
+		TIMER2_OFF;
+		logInt(timerCounter);
+		//TCNT2 = 0;
+		if (timerCounter < 80) {
+			idleBool = 0;
+		} else {
+			LED_OFF;
+			absentCounter++;
+			if (absentCounter > 5)
+			{
+				idleBool = 1;
+				absentCounter = 0;
+			}
+		}
+		timerCounter = 0;
 	}
 }
 
 void logInt(uint16_t counter) {
+	TFT_Window(85, 42, 170, 60, TFT_Landscape);
+	for(int i = 0; i < 1643; i++) {
+		SPISend8Bit(0xFF);
+	};
 	char str[12];
 	sprintf(str, "%d", counter);
 	TFT_Print(str, 85, 42, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
 }
 
+void screensaver() {
+	TFT_Window(0, 0, 175, 131, TFT_Landscape);
+	for(int i = 0; i < 23232; i++) {
+		SPISend8Bit(0xFF);
+	};
+	char str[] = "SCREENSAVER";
+	TFT_Print(str, 35, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+}
+
 
 // Timer 2 - Distance Counter
 ISR(TIMER2_COMPA_vect){
+	if (triggerOnBool)
+	{
+		//LED_ON;
+		TRIGGER_OFF;
+		triggerOnBool = 0;
+	}
 	//LED_ON;
 	timerCounter++;
-	if (timerCounter > 12)
-	{
-		//TRIGGER_OFF;
-	}
 }
 
 // Timer 0 - Game Loop
@@ -141,33 +162,35 @@ ISR(TIMER0_COMPA_vect){
 	static volatile uint8_t gameCounter = 0;
 	static volatile uint8_t jumpCounter = 0;
 	static volatile uint8_t overCounter = 0;
+	static volatile uint8_t measureCounter = 0;
+	static volatile uint8_t idleCounter = 0;
 	
 	// Polling for debugging
-	if (BUTTON_1_PRESS) {
-		counter1++;
-		if (counter1 == 100)
-		{
-			counter1 = 0;
-			jumping = 1;
-			TRIGGER_ON;
-		}
-	} else
-	{
-		TRIGGER_OFF;
-		counter1 = 0;
-	}
+	//if (BUTTON_1_PRESS) {
+		//counter1++;
+		//if (counter1 == 100)
+		//{
+			//counter1 = 0;
+			//jumping = 1;
+			////TRIGGER_ON;
+		//}
+	//} else
+	//{
+		////TRIGGER_OFF;
+		//counter1 = 0;
+	//}
+	//
 	
 	if (!gameOver) {
 		// game ticks
-		if (gameCounter == 25)
+		if (gameCounter == (25 - speed))
 		{
-			
 			// jumping
 			if (jumping)
 			{
 				jump(jumpCounter);
 				jumpCounter++;
-				if (jumpCounter == 36)
+				if (jumpCounter == 38)
 				{
 					jumping = 0;
 					jumpCounter = 0;
@@ -181,18 +204,32 @@ ISR(TIMER0_COMPA_vect){
 		if (overCounter == 255)
 		{
 			BUZZER_OFF;
-			LED_OFF;
+			if (measureCounter == 8)
+			{
+				measureDistance();	
+				measureCounter = 0;
+			}
+			measureCounter++;
 			if (BUTTON_1_PRESS)
 			{
 				InitGame();
-			}	
-		} else {
-			overCounter++;
-		}
+				TIMER2_OFF;
+			}
+			if (idleBool)
+			{
+				idleCounter++;
+				screensaver(idleCounter)
+			} else {
+				idleCounter = 0;
+			}
+		} 
+		overCounter++;
 	}
-	
-	// TODO measure ultrasonic time
-	// jede ms
-	// TODO gameticks
-	//
+}
+
+void measureDistance() {
+	triggerOnBool = 1;
+	TCNT2 = 0;
+	TRIGGER_ON;
+	TIMER2_ON;
 }
