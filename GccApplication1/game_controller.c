@@ -23,9 +23,9 @@
 entity obstacleList[3] = {{0, 0}};
 entity player = {0,0};
 	
-int gameOver;
+int gameOver = 1;
 int jumping;
-
+static volatile uint16_t highscore = 0;
 static volatile uint16_t scoreCounter = 0;
 
 void loadWorld(void);
@@ -33,14 +33,18 @@ void spawnPlayer(void);
 void spawnObstacles(void);
 int checkCollision(entity obst);
 
-void InitGame(){
+void startGame() {
 	gameOver = 0;
+	InitGame();
+	counterDisplay();
+}
+
+void InitGame(){
 	jumping = 0;
 	speed = 0;
 	loadWorld();
 	spawnPlayer();
 	spawnObstacles();
-	counterDisplay();
 	randInit();
 }
 
@@ -107,6 +111,7 @@ void moveObstacles() {
 		 //reset if passed
 		if (obstacleList[i].x == 0)
 		{
+			scoreCounter++;
 			counterDisplay();
 			resetObstacle(&obstacleList[i]);
 		}
@@ -157,7 +162,6 @@ void counterDisplay() {
 	char str[12];
 	sprintf(str, "%d", scoreCounter);
 	TFT_Print(str, 85, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
-	scoreCounter++;
 }
 
 void setGameOver() {
@@ -165,10 +169,19 @@ void setGameOver() {
 	for(int i = 0; i < 23232; i++) {
 		SPISend8Bit(0xFF);
 	};
-	gameOver = 1;
-	scoreCounter = 0;
 	char str[] = "Game Over";
 	TFT_Print(str, 35, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+	//Score
+	sprintf(str, "Your score: %d", scoreCounter);
+	TFT_Print(str, 44, 42, 1, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+	//Highscore
+	if(scoreCounter > highscore) {
+		highscore = scoreCounter;
+	}
+	sprintf(str, "Highscore: %d", highscore);
+	TFT_Print(str, 47, 70, 1, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+	gameOver = 1;
+	scoreCounter = 0;
 }
 
 //void measureDistance() {

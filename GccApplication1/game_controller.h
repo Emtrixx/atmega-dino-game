@@ -23,6 +23,7 @@ int speed;
 //static volatile uint8_t triggerOnBool = 0;
 
 void InitGame();
+void startGame();
 
 void moveObstacles();
 

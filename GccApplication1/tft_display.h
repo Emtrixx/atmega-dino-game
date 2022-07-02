@@ -20,8 +20,10 @@
 
 //Farbdefinitionen fuer 8-Bit-Modus
 #define TFT_8BitGreen 		    	0x1C
+#define TFT_8BitCyan				0x1F
 #define TFT_8BitBlack 		    	0x00
 #define TFT_8BitBlue				0x03
+#define TFT_8BitPurple				0xE2
 #define TFT_8BitRed	        		0xE0
 #define TFT_8BitWhite 		    	0xFF
 

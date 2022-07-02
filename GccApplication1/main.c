@@ -23,6 +23,7 @@
 static volatile uint16_t timerCounter = 0;
 static volatile uint8_t triggerOnBool = 0;
 static volatile uint8_t idleBool = 0;
+static volatile uint16_t absentCounter = 0;
 
 
 int main(void)
@@ -101,13 +102,11 @@ ISR(PCINT2_vect) {
 
 // Sonic ISR
 ISR(PCINT1_vect) {
-	static volatile uint16_t absentCounter = 0;
-	
 	if (ECHO_PIN){
 		timerCounter = 0;
 	} else {
 		TIMER2_OFF;
-		logInt(timerCounter);
+		//logInt(timerCounter);
 		//TCNT2 = 0;
 		if (timerCounter < 80) {
 			idleBool = 0;
@@ -134,13 +133,18 @@ void logInt(uint16_t counter) {
 	TFT_Print(str, 85, 42, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
 }
 
-void screensaver() {
-	TFT_Window(0, 0, 175, 131, TFT_Landscape);
-	for(int i = 0; i < 23232; i++) {
-		SPISend8Bit(0xFF);
-	};
+void screensaver(uint16_t counter) {
+	if (counter == 1)
+	{
+		TFT_Window(0, 0, 175, 131, TFT_Landscape);
+		for(int i = 0; i < 23232; i++) {
+			SPISend8Bit(0xFF);
+		};
+	}
+	uint8_t colors[7] = {TFT_8BitBlack,TFT_8BitGreen, TFT_8BitCyan,TFT_8BitBlue,TFT_8BitPurple,TFT_8BitRed,TFT_8BitWhite};
+	
 	char str[] = "SCREENSAVER";
-	TFT_Print(str, 35, 12, 2, TFT_8BitBlack, TFT_8BitWhite, TFT_Landscape);
+	TFT_Print(str, 22, 60, 2, colors[(counter / 5)%7], TFT_8BitWhite, TFT_Landscape);
 }
 
 
@@ -158,12 +162,12 @@ ISR(TIMER2_COMPA_vect){
 
 // Timer 0 - Game Loop
 ISR(TIMER0_COMPA_vect){
-	static volatile uint8_t counter1 = 0;
 	static volatile uint8_t gameCounter = 0;
 	static volatile uint8_t jumpCounter = 0;
 	static volatile uint8_t overCounter = 0;
 	static volatile uint8_t measureCounter = 0;
-	static volatile uint8_t idleCounter = 0;
+	static volatile uint16_t idleCounter = 0;
+	static volatile uint8_t initBool = 0;
 	
 	// Polling for debugging
 	//if (BUTTON_1_PRESS) {
@@ -183,7 +187,7 @@ ISR(TIMER0_COMPA_vect){
 	
 	if (!gameOver) {
 		// game ticks
-		if (gameCounter == (25 - speed))
+		if (gameCounter == (15))
 		{
 			// jumping
 			if (jumping)
@@ -210,17 +214,30 @@ ISR(TIMER0_COMPA_vect){
 				measureCounter = 0;
 			}
 			measureCounter++;
-			if (BUTTON_1_PRESS)
-			{
-				InitGame();
-				TIMER2_OFF;
-			}
+			
 			if (idleBool)
 			{
+				initBool = 0;
 				idleCounter++;
-				screensaver(idleCounter)
+				screensaver(idleCounter);
+			} else if (!initBool) {
+				InitGame();
+				initBool = 1;
+				idleCounter = 0;
 			} else {
 				idleCounter = 0;
+			}
+			
+			if (BUTTON_1_PRESS)
+			{
+				idleBool = 0;
+				absentCounter = 0;
+				idleCounter = 0;
+				jumpCounter = 0;
+				overCounter = 0;
+				measureCounter = 0;
+				startGame();
+				TIMER2_OFF;
 			}
 		} 
 		overCounter++;
